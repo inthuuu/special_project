@@ -1,10 +1,10 @@
 [
     {
         "special problem id": 0000,
-        "teacher id": 0001.,
+        "teacher id": 0001,
         "co-advisors": [
-            "name":"name",
-            "name2": "name2"
+           { "name":"name",
+            "name2": "name2"}
         ],
         "student": [
             {
@@ -21,10 +21,10 @@
     },
     {
         "special problem id": 0001,
-        "teacher id": 0001.,
+        "teacher id": 0001,
         "co-advisors": [
-            "name":"name",
-            "name2": "name2"
+           { "name":"name",
+            "name2": "name2"}
         ],
         "student": [
             {
@@ -41,10 +41,10 @@
     },
     {
         "special problem id": 0002,
-        "teacher id": 0001.,
+        "teacher id": 0001,
         "co-advisors": [
-            "name":"name",
-            "name2": "name2"
+           { "name":"name",
+            "name2": "name2"}
         ],
         "student": [
             {

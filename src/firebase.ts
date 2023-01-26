@@ -1,3 +1,4 @@
+import { Database } from './../node_modules/@firebase/database-types/index.d';
 import firebase from 'firebase/app';
 import "firebase/database";
 
@@ -11,6 +12,6 @@ let config = {
     measurementId: "G-Z1M4ETMV0P"
 };
 
-firebase.initialzeApp(config);
+firebase.initializeApp(config);
 
-export default firebase.database();
+export default firebase;

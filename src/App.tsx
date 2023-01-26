@@ -21,7 +21,6 @@ function App() {
       <div className='App-context'>
         <h5>ระบบคิดภาระงาน</h5>
       </div>
-      <List profileList={profileList}/>
     </div>
   );
 }
