@@ -13,22 +13,22 @@
   }
 }
 .App-header {
-  padding: 5px 5px;
+  padding: 20px;
   background-color: #e35205;
   display: block;
   flex-direction: column;
   align-items: left;
-  font-size: 16;
+  font-size: 20;
   color: white;
 }
 .App-subheader {
   background-color: #FFF6E9;
-  min-height: 10vh;
+  min-height: 100%;
   display: block;
   flex-direction: row;
   align-items: left;
   justify-items: left;
-  font-size: calc(3px);
+  font-size: 20;
   color: black;
 }
 

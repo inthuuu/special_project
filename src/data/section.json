@@ -1,6 +1,6 @@
 [
     {
-        "subject id": 0001,
+        "subject id": 1,
         "subject code": 901,
         "degree": "bachelor",
         "year": 2,
@@ -73,13 +73,13 @@
             {
                 "week": 15,
                 "professor": "name"
-                },
+                }
             
 
         ]
     },
     {
-        "subject id": 0002,
+        "subject id": 2,
         "subject code": 901,
         "degree": "bachelor",
         "year": 2,
@@ -152,10 +152,10 @@
             {
                 "week": 15,
                 "professor": "name"
-                },
+                }
             
 
         ]
-    },
+    }
 
 ]

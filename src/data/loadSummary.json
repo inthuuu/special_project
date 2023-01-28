@@ -1,0 +1,36 @@
+[
+    {
+        "teacher id": 0,
+        "stutua": "sented",
+        "semester id": 1,
+        "year": 2565,
+        "teach load": [
+            {
+                "teacher od": 0,
+                "subject id": 1
+            },
+            {
+                "teacher id": 0,
+                "subject id": 2
+            },
+            {
+                "teacher id": 0,
+                "subject id": 3
+            },
+            {
+                "teacher id": 0,
+                "subject id": 4
+            }
+        ],
+        "special problem": [
+            {
+                "special problem id": 1,
+                "teacher id": 1
+            },
+            {
+                "special problem id": 2,
+                "teacher id": 1
+            }
+        ]
+    }
+]
