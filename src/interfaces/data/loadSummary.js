@@ -1,7 +1,7 @@
 [
     {
         "teacher id": 0000,
-        "stutua": "sented",
+        "status": "sended",
         "semester id": 1,
         "year": 2565,
         "teach load": [
