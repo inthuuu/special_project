@@ -1,12 +1,14 @@
 import { Component } from "react";
 import Title from "../Props/titleProbs";
 import service from '../Hooks/firestoreService'
+import { Row } from "reactstrap"
+
 type Probs = {};
 
 type State = {
     titles: Array<Title>,
     currentTitle: Title | null,
-    currentIndex: number
+    currentIndex: number,
 }
 
 class List extends Component<Probs, State>{
@@ -48,7 +50,7 @@ class List extends Component<Probs, State>{
                 title: data.title,
                 degree: data.degree,
                 studentName: data.studentName,
-                advisorName: data.advisorName
+                advisorName: data.advisorName,
             })
         })
 
@@ -64,7 +66,7 @@ class List extends Component<Probs, State>{
         })
     }
 
-    setTitle(titles: Title, index: number) {
+    setTitle(titles: Title, index: number, names: []) {
         this.setState({
             currentTitle: titles,
             currentIndex: index,
@@ -73,21 +75,40 @@ class List extends Component<Probs, State>{
 
     render() {
 
-        const { titles, currentIndex} = this.state;
+        const { titles, currentIndex } = this.state;
 
         return (
             <>
             <div className="list row">
-                <div className="col-md-6">
+                <Row>
+                <div className="col">
                     <h4>Special problem</h4>
+                    <table>
+                        <thead className="thead">
+                            <tr>
+                            <th scope="col">ชื่อเรื่อง</th>
+                            <th scope="col">ระดับ</th>
+                            <th scope="col">ชื่อนักศึกษา</th>
+                            <th scope="col">จำนวนที่ปรึกษา</th>
+                            </tr>
+                        </thead>
+                        
+                        
+                    
                     <ul className="list-group">
                         {titles && titles.map((titles, index)=> (
                             <li className="list-group-item" key={index}>
                                 {titles.title}
+                                {/* {titles.degree} */}
                             </li>
                         ))}
+                        
                     </ul>
+                    
+                    </table>
                 </div>
+
+                </Row>
             </div>
             </>
         )
