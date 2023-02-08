@@ -1,28 +1,41 @@
-import React, { ProfilerProps } from 'react';
-import logo from './logo.svg';
+import { Routes, Route } from "react-router-dom"
+import { Container } from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import List  from './components/List';
+import { Home } from "./interfaces/Home"
+import Teachload from './interfaces/teachload';
+import LoadCheck  from './interfaces/loadCheck';
+import { Conclusion } from "./interfaces/conclusion"
+import { Navbar } from "./components/Navbar"
+import { Button } from "react-bootstrap"
+
 
 function App() {
 
   return (
-    <div className="App">
-      <div className='App-header'>
-        <h3>KMITL</h3>
-        <h3>TEACHLOAD</h3>
-      </div>
-      <div className='App-subheader'>
-        <button className='btn default'>หน้าแรก</button>
-        <button className='btn default'>ภาระงานสอน</button>
-        <button className='btn default'>สรุปภาระงาน</button>
-      </div>
-      <div className='App-context'>
-        <h5>ระบบคิดภาระงาน</h5>
-      </div>
+    <div className='App'>
+    <div className="App-header">
+        KMITL <br />
+        TEACHLOAD
+        <div className="col-md-3 row align-item-end">
+          <Button className="btn">รักชาติ</Button>
+        </div>
     </div>
-  );
+      <div className='App-subheader'>
+    <Navbar />
+    </div>
+    <Container className="mb-4">
+    <Routes>
+      <Route path="/" element={<Home /> } />
+      <Route path="/teachload" element={<Teachload />} />
+      <Route path="/conclusion" element={<Conclusion />} />
+      <Route path="/loadCheck" element={<LoadCheck />} />
+    </Routes>
+  </Container>
+
+  </div>
+  )
 }
 
 export default App;
