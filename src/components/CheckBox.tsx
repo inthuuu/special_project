@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react'
-
 interface Probs {
-  isChecked: boolean,
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  label: string,
+  name: string
+  isChecked: boolean
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 const CheckBox = (probs: Probs) => {
   return (
     <>
     <div>
-      <label htmlFor='{probs.label}>{probs.label}'></label>
+    <label htmlFor=''></label>
       <input
         type='checkbox'
-        id={probs.label}
+        name={probs.name}
+        id={probs.name}
         checked={probs.isChecked}
-        onChange={probs.handleChange}
+        onChange={probs.onChange}
         >
       </input>
     </div>

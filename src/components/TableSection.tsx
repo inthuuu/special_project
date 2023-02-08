@@ -1,7 +1,6 @@
 import useOpenController from '../Hooks/useOpenController';
 import { TableRow } from './TableRow';
 import { ExpendableButton } from './ExpandableButton';
-import { Row } from 'react-bootstrap';
 import { Info } from '../Props/info';
 
 const TableSection  = ({ info}: {info: Info}) => {

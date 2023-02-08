@@ -82,14 +82,7 @@ class List extends Component<Probs, State>{
                     <h4>Special problem</h4>
                     <ul className="list-group">
                         {titles && titles.map((titles, index)=> (
-                            <li 
-                            className={
-                                "list-group-item" + 
-                                (index === currentIndex ? "active": "")
-                            }
-                            onClick={()=> this.setTitle(titles, index)}
-                            key={index}
-                            >
+                            <li className="list-group-item" key={index}>
                                 {titles.title}
                             </li>
                         ))}

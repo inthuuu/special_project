@@ -1,24 +1,64 @@
+import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import CheckBox from './CheckBox';
+import { professor } from '../Props/sectionProps';
 
-const weeks = [
-  {week:1},
-  {week:2},
-  {week:3},
-  {week:4},
-  {week:5},
-  {week:6},
-  {week:7},
-  {week:8},
-  {week:9},
-  {week:10},
-  {week:11},
-  {week:12},
-  {week:13},
-  {week:14},
-  {week:15},
+
+const checkedBoxData = [
+  {name:'1', isChecked: false},
+  {name:'2', isChecked: false},
+  {name:'3', isChecked: false},
+  {name:'4', isChecked: false},
+  {name:'5', isChecked: false},
+  {name:'6', isChecked: false},
+  {name:'7', isChecked: false},
+  {name:'8', isChecked: false},
+  {name:'9', isChecked: false},
+  {name:'10', isChecked: false},
+  {name:'11', isChecked: false},
+  {name:'12', isChecked: false},
+  {name:'13', isChecked: false},
+  {name:'14', isChecked: false},
+  {name:'15', isChecked: false},
 ]
 
 export const TableRow = ({info}:{info: any}) => {
+
+  const [ allSelect, setAllSelect ] = useState(false);
+  const [ someSelect, setSomeSelect] = useState(false);
+  const [ checkedBoxs, setCheckedBox] = useState(
+    new Array(checkedBoxData.length).fill(false)
+  );
+
+  const handleAllSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAllSelect(event.target.checked)
+    setSomeSelect(!event.target.checked)
+    let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
+      return {...checkedBox, isChecked: true}
+    })
+    setCheckedBox(tempCheckedBox);
+  }
+
+  const handleSomeSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSomeSelect(event.target.checked)
+    setAllSelect(!event.target.checked);
+    setCheckedBox(new Array(checkedBoxData.length).fill(false));
+  }
+
+  const handleCheckedBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, checked} = event.target
+    if(allSelect) {
+      let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
+        return {...checkedBox, isChecked: true}
+      })
+      setCheckedBox(tempCheckedBox);
+    } else {
+      let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
+        return checkedBox.name === name ? {...checkedBox, isChecked: checked} : checkedBox
+      })
+      setCheckedBox(tempCheckedBox);
+    }
+  }
 
   return (
         <div className="container">
@@ -27,11 +67,16 @@ export const TableRow = ({info}:{info: any}) => {
                 <div className="col-sm"><h6>Department: {info.department}</h6> </div>
                 <div className="col-sm"><h6>Section: {info.sectionId} </h6></div>
             </div>
+            <h5>อาจารย์ผู้สอน</h5>
             <div className='row'>
               <div className='col-sm'>
-                {info.professor.map(()=> (
-                    <h6>{info.professor.name}</h6>
+                <ul className='list-group'>
+                {info.professor && info.professor.map((professor: professor, index: number)=> (
+                    <li className='list-group-item'>
+                      {professor.name}
+                    </li>
                 ))}
+                </ul>
               </div>
             </div>
 
@@ -39,23 +84,18 @@ export const TableRow = ({info}:{info: any}) => {
             <div className='container'>
               <div className="row">
                 <div className="col-sm form-check-">
-                  <input className="form-check-input" type="radio" name="type" id="type1" value="option1"  ></input>
-                  <label className="form-check-label">สอนคนเดียว</label>
+                  <input className="form-check-input" type="radio" name="select" id="allSelect" value={'allSelect'} checked={allSelect} onChange={handleAllSelect} ></input>
+                  <label className="form-check-label">สอนคนเดียว, สอนร่วมกันทุกสัปดาห์</label>
                 </div>
                 <div className="col-sm form-check-">
-                  <input className="form-check-input" type="radio" name="type" id="type2" value="option2" ></input>
-                  <label className="form-check-label">สอนร่วมกัน</label>
-                </div>
-                <div className="col-sm form-check-">
-                  <input className="form-check-input" type="radio" name="type" id="type3" value="option3" ></input>
+                  <input className="form-check-input" type="radio" name="select" id="someSelect" value={'someSelect'} checked={someSelect} onChange={handleSomeSelect}></input>
                   <label className="form-check-label">สอนร่วมกันบางสัปดาห์</label>
                 </div>
               </div>
             </div>
            
             {/*table */}
-           
-                <Table className='table table-bordered'>
+              <Table className='table table-bordered'>
                 <thead className="thead">
                   <tr>
                     <th scope="col-sm-8">จำนวนสัปดาห์ที่สอน(ไม่รวมสัปดาห์สอบ)</th>
@@ -65,14 +105,16 @@ export const TableRow = ({info}:{info: any}) => {
                 <tbody>
                   <tr>
                     <th colSpan={1} scope="col-sm-8">
-                      {weeks.map((weeks , index)=>(
+                    {checkedBoxs.map((checkedBox , index)=>(
                         <td>
                           <div className='col'>
                             <div className='row-sm'>
                               {index+1}
                             </div>
                             <div className='row-sm'>
+                            <CheckBox name={checkedBox.name} isChecked={checkedBox.isChecked} onChange={handleCheckedBox}></CheckBox>
                             </div>
+                            
                           </div>
                         </td>
                       ))}
@@ -81,8 +123,6 @@ export const TableRow = ({info}:{info: any}) => {
                   </tr>
                 </tbody>
               </Table>
-           
-           
         </div>
   );
 };
