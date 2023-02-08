@@ -11,7 +11,7 @@ import { teachLoad } from "../Props/teachloadProbs";
 import { subject } from "../Props/subjectProps";
 import TableSection from "./TableSection";
 
-const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>,subjects: Array<subject>}) => {
+const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
 
         let info = new Array<Info>();
         

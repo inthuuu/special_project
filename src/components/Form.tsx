@@ -1,8 +1,7 @@
 import React, { ChangeEvent, Component} from 'react'
 import "firebase/database";
 import Title from '../Props/titleProbs';
-import service from '../Hooks/firestoreService'
-
+import service from "../Hooks/firestoreService"
 type Probs = {};
 
 type State = Title & {
