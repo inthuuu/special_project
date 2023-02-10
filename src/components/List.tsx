@@ -1,14 +1,13 @@
 import { Component } from "react";
 import Title from "../Props/titleProbs";
 import service from '../Hooks/firestoreService'
-import { Row } from "reactstrap"
+import { Row, Table } from "reactstrap"
 
 type Probs = {};
 
 type State = {
     titles: Array<Title>,
     currentTitle: Title | null,
-    currentIndex: number,
 }
 
 class List extends Component<Probs, State>{
@@ -25,14 +24,13 @@ class List extends Component<Probs, State>{
         this.state = {
             titles: [],
             currentTitle: null,
-            currentIndex: -1
         }
 
         this.unsubscribe = () => {};
     }
 
     componentDidMount(){
-        this.unsubscribe = service.getAll('1').orderBy("title", "asc").onSnapshot(this.onDateChange);
+        this.unsubscribe = service.getTitle('1').orderBy("title", "asc").onSnapshot(this.onDateChange);
     }
 
     componentWillUnmount() {
@@ -43,7 +41,6 @@ class List extends Component<Probs, State>{
         let titles = new Array<Title>();
 
         items.forEach((item: any)=> {
-            let id = item.id;
             let data = item.data();
             titles.push({
                 id: item.id,
@@ -62,20 +59,18 @@ class List extends Component<Probs, State>{
     refreshList() {
         this.setState({
             currentTitle: null,
-            currentIndex: -1
         })
     }
 
     setTitle(titles: Title, index: number, names: []) {
         this.setState({
-            currentTitle: titles,
-            currentIndex: index,
+            currentTitle: titles
         })
     }
 
     render() {
 
-        const { titles, currentIndex } = this.state;
+        const { titles} = this.state;
 
         return (
             <>
@@ -83,7 +78,7 @@ class List extends Component<Probs, State>{
                 <Row>
                 <div className="col">
                     <h4>Special problem</h4>
-                    <table>
+                    <Table className="align-item-center table-light table-flush" responsive>
                         <thead className="thead">
                             <tr>
                             <th scope="col">ชื่อเรื่อง</th>
@@ -92,20 +87,28 @@ class List extends Component<Probs, State>{
                             <th scope="col">จำนวนที่ปรึกษา</th>
                             </tr>
                         </thead>
-                        
-                        
-                    
-                    <ul className="list-group">
-                        {titles && titles.map((titles, index)=> (
-                            <li className="list-group-item" key={index}>
-                                {titles.title}
-                                {/* {titles.degree} */}
-                            </li>
-                        ))}
-                        
-                    </ul>
-                    
-                    </table>
+
+                        <tbody>
+                            <tr>
+                                {titles && titles.map((titles, index)=> (
+                                    <>
+                                        <td>{titles.title}</td>
+                                        <td>{titles.degree}</td>
+                                        <td>{
+                                            titles.studentName.map((studentName)=> (
+                                                <li>{studentName.name} {studentName.lastname}</li>
+                                            ))
+                                        }</td>
+                                        <td>{
+                                            titles.advisorName.map((advisorName)=> (
+                                                <li>{advisorName.name} {advisorName.lastname}</li>
+                                            ))
+                                        }</td>
+                                    </>
+                                ))} 
+                            </tr>
+                        </tbody>
+                    </Table>
                 </div>
 
                 </Row>

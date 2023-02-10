@@ -2,7 +2,7 @@ import firebase from "../firebase";
 
 const sectionDb = firebase.collection("/section")
 const subjectDb = firebase.collection("/subjects")
-const teachloadDb = firebase.collection("/teachload")
+const teachloadDb = firebase.collection("/loadsum")
  
 class GetInfo {
 
@@ -14,8 +14,8 @@ class GetInfo {
         return subjectDb;
     }
 
-    getAllTeachload () {
-        return teachloadDb;
+    getAllTeachload (teacherId: string) {
+        return teachloadDb.doc(teacherId).collection("teachload");
     }
 }
 

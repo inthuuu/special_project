@@ -43,7 +43,7 @@ class TableSubject extends Component<Probs, State> {
     componentDidMount() {
         this.unsubscribeSection = service.getAllSection().orderBy("subjectCode").onSnapshot(this.onSections);
         this.unsubscribeSubject = service.getAllSubject().orderBy("subjectCode").onSnapshot(this.onSubject);
-        this.unsubscribeTeachLoad = service.getAllTeachload().where("teacherId", "==","1").onSnapshot(this.onTeachload);
+        this.unsubscribeTeachLoad = service.getAllTeachload("1").onSnapshot(this.onTeachload);
     }
 
     componentWillUnmount() {

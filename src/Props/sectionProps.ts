@@ -1,11 +1,11 @@
 
 export interface teachingWeek {
-    week:number,
-    teacherId:string
+    name:string,
+    teacherId:string[]
 }
 
 export interface professor {
-    teacherId:number,
+    teacherId: number,
     name: string
 }
 
@@ -13,7 +13,7 @@ export interface section {
     sectionId: string,
     subjectID: string,
     subjectCode: string,
-    totalStudents: number | null,
+    totalStudents: number[] | null,
     degree: string,
     faculty: string,
     department: string,

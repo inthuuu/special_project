@@ -5,7 +5,7 @@ export interface Info {
     sectionId: string,
     subjectID: string,
     subjectCode: string,
-    totalStudents: number | null,
+    totalStudents: number[] | null,
     degree: string,
     faculty: string,
     department: string,

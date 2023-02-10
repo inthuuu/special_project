@@ -24,10 +24,18 @@ const checkedBoxData = [
 
 export const TableRow = ({info}:{info: any}) => {
 
+  let checkedBoxsData: any
+
+  info.teachingWeek.map(()=> {
+      return checkedBoxsData = checkedBoxData.map((checkedBox) => {
+        return {...checkedBox, teacherId: info.teacherId }
+      })
+  })
+
   const [ allSelect, setAllSelect ] = useState(false);
   const [ someSelect, setSomeSelect] = useState(false);
   const [ checkedBoxs, setCheckedBox] = useState(
-    new Array(checkedBoxData.length).fill(false)
+    new Array(checkedBoxsData.length).fill(false)
   );
 
   const handleAllSelect = (event: React.ChangeEvent<HTMLInputElement>) => {

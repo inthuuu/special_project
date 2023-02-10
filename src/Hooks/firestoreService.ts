@@ -1,10 +1,14 @@
 import firebase from "../firebase";
 import Title from "../Props/titleProbs";
 
-const db = firebase.collection("/Loadsum");
+const db = firebase.collection("/loadsum");
 
 class TitleService {
-    getAll(teacherId: string) {
+    getAll() {
+        return db
+    }
+
+    getTitle(teacherId: string) {
         return db.doc(teacherId).collection("specialProject");
     }
 
