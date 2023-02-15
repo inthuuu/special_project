@@ -78,49 +78,44 @@ class List extends Component<Probs, State>{
         const { titles} = this.state;
 
         return (
-            <>
-            <div className="headspe">
+            
+            <div className="tablespe">
+                <div className="headspe">
                 <br />
                 <center>รายชื่อปัญหาพิเศษ, โครงการพิเศษ, วิทยานิพนธ์</center>
                 <br />
-            </div>
-            <Table striped bordered hover size="sm">
-                
-                <thead>
-                    <tr>
-                        <th scope="col">ชื่อเรื่อง</th>
-                        <th scope="col">ระดับ</th>
-                        <th scope="col">ชื่อนักศึกษา</th>
-                        <th scope="col">ที่ปรึกษา</th>
-                        <th scope="col">แก้ไข/ลบ</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
+                </div>
+                <Table bordered hover size="sm">
+                    <tbody>
+                        <tr className="headtablespe">
+                            <td>ชื่อหัวข้อ</td>
+                            <td>ระดับ</td>
+                            <td>ชื่อนักศึกษา</td>
+                            <td>ที่ปรึกษา</td>
+                            <td>แก้ไข/ลบ</td>
+                        </tr>
                         {titles && titles.map((titles, index)=> (
-                            <div className="">
+                            <tr key={index}>
                             <td scope='row'>{titles.title}</td>
                             <td scope='row'>{titles.degree}</td>
                             <td scope='row'>{titles.studentName.map((studentName)=> (
-                                <li>{studentName.name} {studentName.lastname}</li>))}</td>
+                               <ul>  {studentName.name} {studentName.lastname}</ul> ))}</td>
                             <td scope='row'>{titles.advisorName.map((advisorName)=> (
-                                <li>{advisorName.name} {advisorName.lastname}</li>))}</td>
+                                <ul>{advisorName.name} {advisorName.lastname}</ul>))}</td>
                             <td scope='row'>แก้ไข/ลบ</td> 
-                            </div>
+                            </tr>
                             
                             ))} 
-                            </tr>
-                        </tbody>
-            </Table>
+                    </tbody>
+                </Table>
 
-            <div className="addSpe">
-                <Nav.Link to="/from" as={NavLink}>
-                    เพิ่มชื่อเรื่อง
-                </Nav.Link>
+                <div className="addSpe">
+                 <Nav.Link to="/from" as={NavLink}>
+                    + เพิ่มชื่อเรื่อง
+                 </Nav.Link>
                 
+             </div>
             </div>
-            </>
         ) //close return
         } //render
 } //class

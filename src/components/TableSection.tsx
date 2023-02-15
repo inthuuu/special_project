@@ -10,6 +10,7 @@ const TableSection  = ({ info}: {info: Info}) => {
     return (
         <>
         <tbody>
+            
             <tr>
                 <td><center>{info.name}</center></td>
                 <td><center>{info.totalStudents}</center></td>

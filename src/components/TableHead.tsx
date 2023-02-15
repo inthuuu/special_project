@@ -70,23 +70,21 @@ const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachL
                 <br/>
 
                 <Card className="table table-striped">
-                    <CardHeader className="bg-transparent border-0"></CardHeader>
-                    <Table className="align-item-center table-light table-flush" responsive>
+                    <Table className="headTableSec">
                         <thead className="thead">
                             <tr>
-                            <th scope="col"><center>ชื่อ - รหัสวิชา</center></th>
-                            <th scope="col"><center>จำนวนนักศึกษาที่ลงทะเบียน</center></th>
-                            <th scope="col"><center>ระดับ</center></th>
-                            <th scope="col"><center>จำนวนชั่วโมงที่สอนต่อสัปดาห์</center></th>
-                            <th scope="col"><center>จำนวนชั่วโมงที่สอนต่อภาคเรียน</center></th>
-                            <th scope="col"><center>จำนวนภาระงานที่สอนต่อภาคเรียน</center></th>
-                            <th scope="col"><center>จำนวนสัปดาห์ที่สอนต่อภาคเรียน</center></th>
+                            <th><center>ชื่อ - รหัสวิชา</center></th>
+                            <th><center>จำนวนนักศึกษาที่ลงทะเบียน</center></th>
+                            <th><center>ระดับ</center></th>
+                            <th><center>จำนวนชั่วโมงที่สอนต่อสัปดาห์</center></th>
+                            <th><center>จำนวนชั่วโมงที่สอนต่อภาคเรียน</center></th>
+                            <th><center>จำนวนภาระงานที่สอนต่อภาคเรียน</center></th>
+                            <th><center>จำนวนสัปดาห์ที่สอนต่อภาคเรียน</center></th>
                             </tr>
                         </thead>
-                        {  
-                                   info && info.map((info)=> (
-                                    <TableSection info={info}></TableSection>
-                                   ))                   
+                        
+                        {info && info.map((info)=> (
+                            <TableSection info={info}></TableSection>))                   
                         }
                         
                     </Table>
