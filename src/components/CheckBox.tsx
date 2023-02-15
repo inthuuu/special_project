@@ -1,3 +1,5 @@
+import '../components/Table.css'
+
 interface Probs {
   name: string
   isChecked: boolean
@@ -7,7 +9,7 @@ interface Probs {
 const CheckBox = (probs: Probs) => {
   return (
     <>
-    <div>
+    <div className="checkbox">
     <label htmlFor=''></label>
       <input
         type='checkbox'
@@ -23,3 +25,4 @@ const CheckBox = (probs: Probs) => {
 }
 
 export default CheckBox
+

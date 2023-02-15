@@ -1,7 +1,12 @@
 import { Component } from "react";
+import { NavLink } from "react-router-dom"
+import { Nav } from "react-bootstrap"
 import Title from "../Props/titleProbs";
 import service from '../Hooks/firestoreService'
-import { Row, Table } from "reactstrap"
+import Table from 'react-bootstrap/Table';
+import From from '../components/Form'
+import { Row } from "reactstrap"
+import '../components/Table.css'
 
 type Probs = {};
 
@@ -74,48 +79,50 @@ class List extends Component<Probs, State>{
 
         return (
             <>
-            <div className="list row">
-                <Row>
-                <div className="col">
-                    <h4>Special problem</h4>
-                    <Table className="align-item-center table-light table-flush" responsive>
-                        <thead className="thead">
-                            <tr>
-                            <th scope="col">ชื่อเรื่อง</th>
-                            <th scope="col">ระดับ</th>
-                            <th scope="col">ชื่อนักศึกษา</th>
-                            <th scope="col">จำนวนที่ปรึกษา</th>
-                            </tr>
-                        </thead>
+            <div className="headspe">
+                <br />
+                <center>รายชื่อปัญหาพิเศษ, โครงการพิเศษ, วิทยานิพนธ์</center>
+                <br />
+            </div>
+            <Table striped bordered hover size="sm">
+                
+                <thead>
+                    <tr>
+                        <th scope="col">ชื่อเรื่อง</th>
+                        <th scope="col">ระดับ</th>
+                        <th scope="col">ชื่อนักศึกษา</th>
+                        <th scope="col">ที่ปรึกษา</th>
+                        <th scope="col">แก้ไข/ลบ</th>
+                    </tr>
+                </thead>
 
-                        <tbody>
-                            <tr>
-                                {titles && titles.map((titles, index)=> (
-                                    <>
-                                        <td>{titles.title}</td>
-                                        <td>{titles.degree}</td>
-                                        <td>{
-                                            titles.studentName.map((studentName)=> (
-                                                <li>{studentName.name} {studentName.lastname}</li>
-                                            ))
-                                        }</td>
-                                        <td>{
-                                            titles.advisorName.map((advisorName)=> (
-                                                <li>{advisorName.name} {advisorName.lastname}</li>
-                                            ))
-                                        }</td>
-                                    </>
-                                ))} 
+                <tbody>
+                    <tr>
+                        {titles && titles.map((titles, index)=> (
+                            <div className="">
+                            <td scope='row'>{titles.title}</td>
+                            <td scope='row'>{titles.degree}</td>
+                            <td scope='row'>{titles.studentName.map((studentName)=> (
+                                <li>{studentName.name} {studentName.lastname}</li>))}</td>
+                            <td scope='row'>{titles.advisorName.map((advisorName)=> (
+                                <li>{advisorName.name} {advisorName.lastname}</li>))}</td>
+                            <td scope='row'>แก้ไข/ลบ</td> 
+                            </div>
+                            
+                            ))} 
                             </tr>
                         </tbody>
-                    </Table>
-                </div>
+            </Table>
 
-                </Row>
+            <div className="addSpe">
+                <Nav.Link to="/from" as={NavLink}>
+                    เพิ่มชื่อเรื่อง
+                </Nav.Link>
+                
             </div>
             </>
-        )
-        }
-}
+        ) //close return
+        } //render
+} //class
 
 export default List;

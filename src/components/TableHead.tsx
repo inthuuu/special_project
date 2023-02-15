@@ -4,12 +4,13 @@ import {
     Table,
     Row,
   } from "reactstrap"
-  
+
 import { Info } from "../Props/info";
 import { section } from "../Props/sectionProps";
 import { teachLoad } from "../Props/teachloadProbs";
 import { subject } from "../Props/subjectProps";
 import TableSection from "./TableSection";
+import '../components/Table.css';
 
 const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
 
@@ -64,19 +65,22 @@ const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachL
         {/*table */}
         <Row className="mt-5">
             <div className="col">
-                <h3 className="align-item-center mb-0">รายวิชาที่สอน</h3>
+                <br />
+                <h3 className="headwork"><center>รายวิชาที่สอน</center></h3>
+                <br/>
+
                 <Card className="table table-striped">
                     <CardHeader className="bg-transparent border-0"></CardHeader>
                     <Table className="align-item-center table-light table-flush" responsive>
                         <thead className="thead">
                             <tr>
-                            <th scope="col">ชื่อ - รหัสวิชา</th>
-                            <th scope="col">จำนวนนักศึกษาที่ลงทะเบียน</th>
-                            <th scope="col">จำนวนชั่วโมงที่สอนต่อสัปดาห์</th>
-                            <th scope="col">จำนวนสัปดาห์ที่สอนต่อภาคเรียน</th>
-                            <th scope="col">จำนวนชั่วโมงที่สอนต่อภาคเรียน</th>
-                            <th scope="col">จำนวนภาระงานที่สอนต่อภาคเรียน</th>
-                            <th scope="col">ระดับ</th>
+                            <th scope="col"><center>ชื่อ - รหัสวิชา</center></th>
+                            <th scope="col"><center>จำนวนนักศึกษาที่ลงทะเบียน</center></th>
+                            <th scope="col"><center>ระดับ</center></th>
+                            <th scope="col"><center>จำนวนชั่วโมงที่สอนต่อสัปดาห์</center></th>
+                            <th scope="col"><center>จำนวนชั่วโมงที่สอนต่อภาคเรียน</center></th>
+                            <th scope="col"><center>จำนวนภาระงานที่สอนต่อภาคเรียน</center></th>
+                            <th scope="col"><center>จำนวนสัปดาห์ที่สอนต่อภาคเรียน</center></th>
                             </tr>
                         </thead>
                         {  

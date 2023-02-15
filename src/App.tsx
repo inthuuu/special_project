@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Home } from "./interfaces/Home"
 import Teachload from './interfaces/teachload';
 import LoadCheck  from './interfaces/loadCheck';
+import From from './components/Form';
 import { Conclusion } from "./interfaces/conclusion"
 import { Navbar } from "./components/Navbar"
 import { Button } from "react-bootstrap"
@@ -31,6 +32,8 @@ function App() {
       <Route path="/teachload" element={<Teachload />} />
       <Route path="/conclusion" element={<Conclusion />} />
       <Route path="/loadCheck" element={<LoadCheck />} />
+      <Route path="/from" element={<From />} />
+      
     </Routes>
   </Container>
 

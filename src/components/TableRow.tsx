@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import CheckBox from './CheckBox';
 import { professor } from '../Props/sectionProps';
-
+import '../components/Table.css';
 
 const checkedBoxData = [
   {name:'1', isChecked: false},
@@ -75,7 +75,8 @@ export const TableRow = ({info}:{info: any}) => {
                 <div className="col-sm"><h6>Department: {info.department}</h6> </div>
                 <div className="col-sm"><h6>Section: {info.sectionId} </h6></div>
             </div>
-            <h5>อาจารย์ผู้สอน</h5>
+            <br />
+            <h5>อาจารย์ผู้สอน</h5><br />
             <div className='row'>
               <div className='col-sm'>
                 <ul className='list-group'>
@@ -87,15 +88,15 @@ export const TableRow = ({info}:{info: any}) => {
                 </ul>
               </div>
             </div>
-
-            <h5>รูปแบบการสอน</h5>
+            <br />
+            <h5>รูปแบบการสอน</h5> <br />
             <div className='container'>
               <div className="row">
-                <div className="col-sm form-check-">
+                <div className="col-sm form-check">
                   <input className="form-check-input" type="radio" name="select" id="allSelect" value={'allSelect'} checked={allSelect} onChange={handleAllSelect} ></input>
                   <label className="form-check-label">สอนคนเดียว, สอนร่วมกันทุกสัปดาห์</label>
                 </div>
-                <div className="col-sm form-check-">
+                <div className="col-sm form-check">
                   <input className="form-check-input" type="radio" name="select" id="someSelect" value={'someSelect'} checked={someSelect} onChange={handleSomeSelect}></input>
                   <label className="form-check-label">สอนร่วมกันบางสัปดาห์</label>
                 </div>
@@ -113,7 +114,7 @@ export const TableRow = ({info}:{info: any}) => {
                 <tbody>
                   <tr>
                     <th colSpan={1} scope="col-sm-8">
-                    {checkedBoxs.map((checkedBox , index)=>(
+                      {checkedBoxs.map((checkedBox , index)=>(
                         <td>
                           <div className='col'>
                             <div className='row-sm'>
@@ -126,7 +127,8 @@ export const TableRow = ({info}:{info: any}) => {
                           </div>
                         </td>
                       ))}
-                    </th>
+                      
+                      </th>
                     <td>0</td>
                   </tr>
                 </tbody>

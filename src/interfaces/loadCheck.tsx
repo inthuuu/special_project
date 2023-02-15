@@ -9,7 +9,7 @@ const LoadCheck = () => {
            
             {/*<TableCheck />*/}
             <TableSubject></TableSubject>
-            <Form></Form>
+            {/* <Form></Form> */}
             <List></List>
             
         </>
