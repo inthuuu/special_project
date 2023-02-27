@@ -7,7 +7,7 @@ import { Home } from "./interfaces/Home"
 import Teachload from './interfaces/teachload';
 import LoadCheck  from './interfaces/loadCheck';
 import From from './components/Form';
-import { Conclusion } from "./interfaces/conclusion"
+import Conclusion from "./interfaces/conclusion"
 import { Navbar } from "./components/Navbar"
 import { Button } from "react-bootstrap"
 
