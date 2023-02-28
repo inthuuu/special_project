@@ -3,7 +3,7 @@ import Title from "../Props/titleProbs";
 
 const db = firebase.collection("/loadsum");
 
-class TitleService {
+class LoadsumService {
     getAll() {
         return db
     }
@@ -26,4 +26,4 @@ class TitleService {
 }
 
 
-export default new TitleService();
+export default new LoadsumService();

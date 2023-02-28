@@ -1,16 +1,15 @@
 import {
     Card,
-    CardHeader,
     Table,
     Row,
   } from "reactstrap"
 
-import { Info } from "../Props/info";
-import { section } from "../Props/sectionProps";
-import { teachLoad } from "../Props/teachloadProbs";
-import { subject } from "../Props/subjectProps";
+import { Info } from "../../Props/info";
+import { section } from "../../Props/sectionProps";
+import { teachLoad } from "../../Props/teachloadProbs";
+import { subject } from "../../Props/subjectProps";
 import TableSection from "./TableSection";
-import '../components/Table.css';
+import './Table.css'
 
 const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
 

@@ -7,6 +7,5 @@ export default interface Title {
 }
 
 interface name {
-    name: string,
-    lastname: string
+    name: string
 }

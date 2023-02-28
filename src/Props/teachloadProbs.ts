@@ -5,3 +5,12 @@ export interface teachLoad {
     totalWeek: number,
     totalTeachload: number
 }
+
+export interface teachloadChecked {
+    teacherId: string,
+    name: string,
+    financeChecked: boolean,
+    headOfTeacherChecked: boolean,
+    regChecked: boolean,
+    teacherChecked: boolean,
+}
