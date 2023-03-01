@@ -7,15 +7,11 @@ type Probs = {};
 type State = Title & {
   submitted: boolean;
   firstName: string,
-  lastName: string,
   addStudent: boolean,
-  firstName2: string,
-  lastName2: string,
-  fName: string,
-  LName: string,
+  firstName2: string, 
+  fName: string, 
   addAdvisor: boolean
   fName2: string,
-  LName2: string,
 }
 
 class Form extends Component<Probs, State> {
@@ -23,13 +19,9 @@ class Form extends Component<Probs, State> {
  constructor(probs: Probs) {
   super(probs);
   this.handleOnChange = this.handleOnChange.bind(this);
-  this.handleAdvisorLastName2OnChange = this.handleAdvisorLastName2OnChange.bind(this);
-  this.handleAdvisorLastNameOnChange = this.handleAdvisorLastNameOnChange.bind(this);
   this.handleAdvisorName2OnChange = this.handleAdvisorName2OnChange.bind(this);
   this.handleAdvisorNameOnChange = this.handleAdvisorNameOnChange.bind(this);
   this.handleDegreeOnChange = this.handleDegreeOnChange.bind(this);
-  this.handleStudentLastName2OnChange = this.handleStudentLastName2OnChange.bind(this);
-  this.handleStudentLastNameOnChange = this.handleStudentLastNameOnChange.bind(this);
   this.handleStudentName2OnChange = this.handleStudentName2OnChange.bind(this);
   this.handleStudentNameOnChange = this.handleStudentNameOnChange.bind(this)
   this.saveTitle = this.saveTitle.bind(this);
@@ -45,15 +37,11 @@ class Form extends Component<Probs, State> {
     advisorName: [],
     submitted: false,
     firstName: '', 
-    lastName: '',
     addStudent: true,
     firstName2: '', 
-    lastName2: '',
     fName: '',
-    LName: '',
     addAdvisor: true,
     fName2: '',
-    LName2: '',
   }
  }
 
@@ -75,33 +63,16 @@ class Form extends Component<Probs, State> {
     })
   }
 
-  handleStudentLastNameOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      lastName: event.target.value
-    })
-  }
-
   handleAdvisorNameOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       fName: event.target.value
     })
   }
 
-  handleAdvisorLastNameOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      LName: event.target.value
-    })
-  }
 
   handleStudentName2OnChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       firstName2: event.target.value
-    })
-  }
-
-  handleStudentLastName2OnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      lastName2: event.target.value
     })
   }
 
@@ -111,32 +82,22 @@ class Form extends Component<Probs, State> {
     })
   }
 
-  handleAdvisorLastName2OnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      LName2: event.target.value
-    })
-  }
-
   saveTitle () {
     let student = [
       {
         name: this.state.firstName,
-        lastname: this.state.lastName
       },
       {
         name: this.state.firstName2,
-        lastname: this.state.lastName2
       },
     ]
 
     let advisor = [
       {
         name: this.state.fName,
-        lastname: this.state.LName
       },
       {
         name: this.state.fName2,
-        lastname: this.state.LName2
       },
     ]
 
@@ -176,15 +137,11 @@ class Form extends Component<Probs, State> {
       studentName: [],
       advisorName: [],
       submitted: false,
-      firstName: '', 
-      lastName: '',
+      firstName: '',
       firstName2: '', 
-      lastName2: '',
       addStudent: true,
       fName: '',
-      LName: '',
       fName2: '',
-      LName2: '',
       addAdvisor: true
     })
   }
@@ -239,20 +196,6 @@ class Form extends Component<Probs, State> {
                   name="title"
                   ></input>
                 </div>
-                <div className='col-sm'>
-                  <div className='form-group'>
-                    <label htmlFor='title'>นามสกุล</label>
-                    <input 
-                    type="text"
-                    className='form-control'
-                    id='title'
-                    required
-                    value={this.state.lastName}
-                    onChange={this.handleStudentLastNameOnChange}
-                    name="title"
-                    ></input>
-                  </div>
-                </div>  
               </div>
             </div>
             <div>
@@ -276,20 +219,6 @@ class Form extends Component<Probs, State> {
                   name="title"
                   ></input>
                 </div>
-                <div className='col-sm'>
-                  <div className='form-group'>
-                    <label htmlFor='title'>นามสกุล 2</label>
-                    <input 
-                    type="text"
-                    className='form-control'
-                    id='title'
-                    required
-                    value={this.state.lastName2}
-                    onChange={this.handleStudentLastName2OnChange}
-                    name="title"
-                    ></input>
-                  </div>
-                </div>  
               </div>
             </div>
                 </>
@@ -309,25 +238,12 @@ class Form extends Component<Probs, State> {
                   name="title"
                   ></input>
                 </div>
-                <div className='col-sm'>
-                  <div className='form-group'>
-                    <label htmlFor='title'>นามสกุล</label>
-                    <input 
-                    type="text"
-                    className='form-control'
-                    id='title'
-                    required
-                    value={this.state.LName}
-                    onChange={this.handleAdvisorLastNameOnChange}
-                    name="title"
-                    ></input>
-                  </div>
-                </div>
               </div>
             </div>
             <div>
                 {this.state.addAdvisor ? (
                   <div>
+                    <></>
                     <button className='btn btn-success' onClick={this.newAdvisor}>Add</button>
                   </div>
                 ):(
@@ -346,24 +262,15 @@ class Form extends Component<Probs, State> {
                   name="title"
                   ></input>
                 </div>
-                <div className='form-group'>
-                    <label htmlFor='title'>นามสกุล 2</label>
-                    <input 
-                    type="text"
-                    className='form-control'
-                    id='title'
-                    required
-                    value={this.state.LName2}
-                    onChange={this.handleAdvisorLastName2OnChange}
-                    name="title"
-                    ></input>
-                  </div> 
               </div>
             </div>
             </>
           )}
           </div>
-            <button onClick={this.saveTitle} className='btn btn-success'> Submit </button>
+          <center>
+          <button onClick={this.saveTitle} className='btn btn-success'> Submit </button>
+          </center>
+            
           </div>
         )}
       </div>

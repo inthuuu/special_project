@@ -1,12 +1,10 @@
 import { Component } from "react";
-import { NavLink } from "react-router-dom"
+import { Form, NavLink } from "react-router-dom"
 import { Nav } from "react-bootstrap"
 import Title from "../Props/titleProbs";
 import service from '../Hooks/firestoreService'
 import Table from 'react-bootstrap/Table';
-import From from '../components/Form'
-import { Row } from "reactstrap"
-import '../components/Table.css'
+import '../components/loadCheckTable/Table.css'
 
 type Probs = {};
 
@@ -78,8 +76,8 @@ class List extends Component<Probs, State>{
         const { titles} = this.state;
 
         return (
-            
-            <div className="tablespe">
+            <>
+                <div className="tablespe">
                 <div className="headspe">
                 <br />
                 <center>รายชื่อปัญหาพิเศษ, โครงการพิเศษ, วิทยานิพนธ์</center>
@@ -99,23 +97,23 @@ class List extends Component<Probs, State>{
                             <td scope='row'>{titles.title}</td>
                             <td scope='row'>{titles.degree}</td>
                             <td scope='row'>{titles.studentName.map((studentName)=> (
-                               <ul>  {studentName.name} {studentName.lastname}</ul> ))}</td>
+                               <ul>  {studentName.name} </ul> ))}</td>
                             <td scope='row'>{titles.advisorName.map((advisorName)=> (
-                                <ul>{advisorName.name} {advisorName.lastname}</ul>))}</td>
+                                <ul>{advisorName.name} </ul>))}</td>
                             <td scope='row'>แก้ไข/ลบ</td> 
                             </tr>
                             
                             ))} 
                     </tbody>
                 </Table>
-
-                <div className="addSpe">
+            </div>
+            <div className="addSpe">
                  <Nav.Link to="/from" as={NavLink}>
                     + เพิ่มชื่อเรื่อง
                  </Nav.Link>
-                
              </div>
-            </div>
+            </>
+
         ) //close return
         } //render
 } //class

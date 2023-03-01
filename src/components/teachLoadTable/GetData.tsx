@@ -1,13 +1,14 @@
 
 import { Component } from "react";
-import { section } from "../Props/sectionProps";
-import { subject } from "../Props/subjectProps";
-import { teachLoad } from "../Props/teachloadProbs";
-import service from '../Hooks/getInfo'
-import TableCheck from "./TableHead";
+import { section } from "../../Props/sectionProps";
+import { subject } from "../../Props/subjectProps";
+import { teachLoad } from "../../Props/teachloadProbs";
+import service from '../../Hooks/getInfo';
+import Teachload from "./TeachloadChecked";
 
-
-type Probs = {};
+type Probs = {
+    teacherId: string
+};
 
 type State = {
     sections: Array<section>,
@@ -16,7 +17,7 @@ type State = {
     currentIndex: number
 }
 
-class TableSubject extends Component<Probs, State> {
+class GetData extends Component<Probs, State> {
     
     "unsubscribeSection" : () => void;
     "unsubscribeSubject" : () => void;
@@ -43,7 +44,7 @@ class TableSubject extends Component<Probs, State> {
     componentDidMount() {
         this.unsubscribeSection = service.getAllSection().orderBy("subjectCode").onSnapshot(this.onSections);
         this.unsubscribeSubject = service.getAllSubject().orderBy("subjectCode").onSnapshot(this.onSubject);
-        this.unsubscribeTeachLoad = service.getAllTeachload("1").onSnapshot(this.onTeachload);
+        this.unsubscribeTeachLoad = service.getTeachload({this: this.props.teacherId}.this).onSnapshot(this.onTeachload);
     }
 
     componentWillUnmount() {
@@ -123,7 +124,7 @@ class TableSubject extends Component<Probs, State> {
 
         return (
             <>
-             <TableCheck teachloads={teachloads} sections={sections} subjects={subjects}></TableCheck>
+            <Teachload teachloads={teachloads} sections={sections} subjects={subjects}></Teachload>
             </>
             
         )
@@ -131,4 +132,4 @@ class TableSubject extends Component<Probs, State> {
 
 }
 
-export default TableSubject;
+export default GetData;

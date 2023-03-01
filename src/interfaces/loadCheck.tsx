@@ -1,19 +1,18 @@
 import List from "../components/List";
-import Form from "../components/Form";
-import TableSubject from "../components/TableGetData";
+import TableSubject from "../components/loadCheckTable/TableGetData";
 
 const LoadCheck = () => {
 
     return (
-        
-           <div className="loadCheck">
+        <>
+        <div className="loadCheck">
             {/*<TableCheck />*/}
             <TableSubject></TableSubject>
-            {/* <Form></Form> */}
+        </div>
+        <div className="container">
             <List></List>
-            </div>
-        
-       
+        </div>
+        </>
     );
 };
 
