@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { Component } from "react";
+import { Button } from 'reactstrap'
+import jsPDF from 'jspdf'
+import SearchBox from "../components/searchBox/searchBox";
 
-function Conclusion() {
-    const [query, setQuery] = useState("");
-    const [data, setData] = useState([]);
+class Conclusion extends Component {
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(`http://localhost:5000?q=${query}`);
-            setData(res.data);
-        };
-        if (query.length === 0 || query.length > 2) fetchData();
-    }, [query]);
+    pdfGenerate = () => {
+        var doc = new jsPDF('portrait','px','a4', false);
+        // doc.addPage()
+        // doc.text(60, 0, 'Name')
+        doc.save('load.pdf')
+    }
+    
+    render() {
+        
+        return (
+            <div>
+            <SearchBox />            <Button onClick={ this.pdfGenerate }>Dowload</Button>
 
-    return (
-        <div className="SearchBox">
-            <br/>
-            <br/>
-            <input className="SearchBox"
-                    placeholder="search"
-                    onChange={(e) => setQuery(e.target.value.toLowerCase)}
-            />
-        </div>
-    )
+            </div>
+        );
+    }
 }
 
 export default Conclusion;
