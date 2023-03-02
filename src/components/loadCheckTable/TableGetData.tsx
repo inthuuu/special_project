@@ -1,4 +1,3 @@
-
 import { Component } from "react";
 import { section } from "../../Props/sectionProps";
 import { subject } from "../../Props/subjectProps";

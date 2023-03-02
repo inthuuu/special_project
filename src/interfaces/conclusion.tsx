@@ -16,7 +16,7 @@ class Conclusion extends Component {
         
         return (
             <div>
-            <SearchBox />            <Button onClick={ this.pdfGenerate }>Dowload</Button>
+            <Button onClick={ this.pdfGenerate }>Dowload</Button>
 
             </div>
         );
