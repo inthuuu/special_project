@@ -1,7 +1,7 @@
 
 export interface teachingWeek {
     name:string,
-    teacherId:string[]
+    teacherId:string[] | null
 }
 
 export interface professor {

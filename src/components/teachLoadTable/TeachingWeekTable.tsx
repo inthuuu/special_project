@@ -1,15 +1,24 @@
+import { teachingWeek } from '../../Props/sectionProps';
 import '../teachLoadTable/BgColors.css'
 import BgColors from './BgCompo';
 
-const TeachingWeekTable = ({teachingWeek} : {teachingWeek: any}) => {
+const TeachingWeekTable = ({teachingWeek} : {teachingWeek: teachingWeek}) => {
+
+    let temp = new Array<any>();
+    if(teachingWeek.teacherId != null) {
+        for(let i = 0; i < teachingWeek.teacherId?.length; i++) {
+            temp.push(teachingWeek.teacherId[i]);
+        }
+    }
 
     return (
         <>
-        <th colSpan={1} scope='col-sm-8 '>
-            <center>
-            <BgColors teacherId={teachingWeek.teacherId} index={teachingWeek.name}></BgColors>
-            </center>
-        </th>
+            <div className='col'>
+                <div className='row-sm-auto'>{teachingWeek.name}</div>
+                <div className='row-sm-auto'>
+                <BgColors teacherId={temp}></BgColors>
+                </div>
+            </div>
         </>
     )
 }

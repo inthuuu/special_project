@@ -6,14 +6,28 @@ import { professor } from "../../Props/sectionProps";
 import { useState } from 'react';
 import { Table } from "reactstrap";
 import TeachingWeekTable from "./TeachingWeekTable";
+import CheckboxConfirm from "./checkbox"
+import { Card } from "react-bootstrap";
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
 const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
 
-    const [confirm, setConfirm] = useState();
+    const [confirm, setConfirm] = useState('');
 
-    
+    const handleConfirmOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+
+        const button:HTMLButtonElement = event.currentTarget;
+        setConfirm(button.name);
+    }
+
+    const handleCancelOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+
+        const button:HTMLButtonElement = event.currentTarget;
+        setConfirm(button.name);
+    }
 
     let info = new Array<Info>();
         
@@ -47,35 +61,36 @@ const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLo
             }
          }
 
-
-
     return (
+    <>
+    <div className="container-fluid">
+    <Card>
+        {info.map((info) => (
         <>
-        <div>
-            {info.map((info) => (
-                <>
-                <div className="container">
+        <Card>
+            <div className="row">
+            <div className="row">
                 {/* first row */}
-                <p>
+                <div className="card-header">
                     <div className="row">
-                        <div className="col-sm"><td scope="row">รหัสวิชา : {info.subjectCode}</td></div>
-                        <div className="col-sm"><td scope="row"><h6>ชื่อวิชา : {info.name}</h6></td></div>
-                        <div className="col-sm"><td scope="row"> {info.typeLearning}</td></div>
-                        <div className="col-sm"><td scope="row">คณะ : {info.faculty}</td></div>
-                        <div className="col-sm"><td scope="row">สาขา : {info.department}</td></div>
+                        <div className="col-sm"><td>รหัสวิชา : {info.subjectCode}</td></div>
+                        <div className="col-sm"><td><h6>ชื่อวิชา : {info.name}</h6></td></div>
+                        <div className="col-sm"><td> {info.typeLearning}</td></div>
+                        <div className="col-sm"><td>คณะ : {info.faculty}</td></div>
+                        <div className="col-sm"><td>สาขา : {info.department}</td></div>
                     </div>
-                </p>
+                </div>
                  {/* second row */}
-                 <p>
+                 <div className="card-body">
                     <div className="row">
-                        <div className="col-sm"><td scope="row">จำนวนนักศึกษาต่อภาคเรียน : {info.totalStudents}</td></div>
-                        <div className="col-sm"><td scope="row">จำนวนนักศึกษาต่อสัปดาห์ : {info.totalStudents}</td></div>
-                        <div className="col-sm"><td scope="row">จำนวนสัปดาห์ที่สอนต่อภาคเรียน : {info.totalWeek}</td></div>
-                        <div className="col-sm"><td scope="row">จำนวนชั่วโมงที่สอนต่อภาคเรียน : {info.totalWeek * 3}</td></div>
+                        <div className="col-sm"><td>จำนวนนักศึกษาต่อภาคเรียน : {info.totalStudents}</td></div>
+                        <div className="col-sm"><td>จำนวนนักศึกษาต่อสัปดาห์ : {info.totalStudents}</td></div>
+                        <div className="col-sm"><td>จำนวนสัปดาห์ที่สอนต่อภาคเรียน : {info.totalWeek}</td></div>
+                        <div className="col-sm"><td>จำนวนชั่วโมงที่สอนต่อภาคเรียน : {info.totalWeek * 3}</td></div>
                     </div>
-                </p>
-                 {/* third row */}
-                 <p>
+                </div>
+                {/* third row */}
+                <div className="card-body">
                     <div className='row'>
                         <h5>อาจารย์ผู้สอน</h5><br />
                         <div className='col-sm'>
@@ -93,9 +108,9 @@ const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLo
                             </ul>
                         </div>
                     </div>
-                </p>
+                </div>
                 {/* table teaching week */}
-                <p>
+                <div className="card-body">
                     <h5>หมายเหตุ :</h5><br />
                     <Table className="table table-bordered">
                         <thead>
@@ -105,31 +120,39 @@ const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLo
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
                             <th colSpan={1} scope="col-sm-8">
+                                <div className="row">
                                 {info.teachingWeek?.map((teachingWeek) => (
                                     <>
                                     <TeachingWeekTable teachingWeek={teachingWeek} ></TeachingWeekTable>
                                     </>
                                 ))}
+                                </div>
                             </th>
-                            <td>{info.totalTeachload}</td>
+                            <th scope="col-sm-4"><p className="text-danger">{info.totalTeachload}</p></th>
+                            </tr>
                         </tbody>
                     </Table>
-                </p>
-                {/* button */}
-                <p>
-                    <div className="row">
-                        <div className="col">
-                            <button className="btn btn-success">ยืนยัน</button>&nbsp;
-                            <button className="btn btn-danger">ตีกลับ</button>
-                        </div>
-                    </div>
-                </p>
                 </div>
-                </>
-            ))}
-        </div>
+                {/*checkbox */}
+                <CheckboxConfirm></CheckboxConfirm>
+            </div>
+            </div>    
+        </Card>
         </>
+        ))}
+        {/* button */}
+            <div className="card-footer">
+                <div className="row">
+                    <div className="col">
+                        <center><button className="btn btn-success" name="confirm" onClick={handleConfirmOnClick}>สิ้นสุด</button>&nbsp;</center>         
+                    </div>
+                </div>
+            </div>
+        </Card>
+    </div>
+    </>
     )
 }
 

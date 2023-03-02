@@ -6,7 +6,6 @@ export const ExpendableButton = ({ isOpen, toggle , label}: {isOpen:any, toggle:
     <button className= "expand" onClick={toggle}>
       <span className="material-symbols-rounded"
       style={{
-        // transform: `rotate(${isOpen ? 180 : 0}deg)`,
         transition: "all 0.25s",}}
        >
       <div className="button">

@@ -8,19 +8,15 @@ import {
 
 import { teacher } from "../../Props/teacher";
 import { teachloadChecked } from "../../Props/teachloadProbs";
-import useOpenController from '../../Hooks/useOpenController';
-import { ExpendableButton } from '../expandButton/ExpandableButton';
-import GetData from "./GetData";
+import DetailData from "./Detail";
 
 const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<teacher>}) => {
-
-    const { isOpen, toggle } = useOpenController(false);
 
     let teachload = new Array<teachloadChecked>();
 
     for(let i = 0; i < teachloads.length; i++) {
         for(let j = 0; j < teachers.length; j++) {
-            if(teachers[j].teacherId == teachloads[i].teacherId) {
+            if(teachers[j].teacherId === teachloads[i].teacherId) {
                 teachload.push ({
                     teacherId: teachers[j].teacherId,
                     name: teachers[j].name,
@@ -56,22 +52,9 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                   </tr>
                 </thead>
                 <tbody>
-                    {teachload.map((teacherChecked, index)=> (
+                {teachload.map((teacherChecked, index)=> (
                     <>
-                    <tr key={index}>
-                        <td scope="row">{teacherChecked.name}</td>
-                        <td scope="row">{teacherChecked.teacherChecked ? "ส่งแล้ว" : "ยังไม่ส่ง"}</td>
-                        <td scope="row">
-                            <ExpendableButton isOpen={isOpen} toggle={toggle} label={"ตรวจภาระงาน"}/>
-                        </td>
-                        <td scope="row">{teacherChecked.headOfTeacherChecked? "ตรวจแล้ว" : "ยังไม่ตรวจ"}</td>
-                    </tr>
-                    <th colSpan={7}>
-                        {isOpen && 
-                        <> <GetData teacherId={teacherChecked.teacherId}></GetData>
-                        </>
-                        }
-                    </th>
+                    <DetailData teacherChecked={teacherChecked} index={index}></DetailData>
                     </> 
                     ))}
                 </tbody>

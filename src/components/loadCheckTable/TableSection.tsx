@@ -9,8 +9,7 @@ const TableSection  = ({ info}: {info: Info}) => {
     
     return (
         <>
-        <tbody>
-            
+        <tbody>   
             <tr>
                 <td><center>{isOpen ? "วิชา : " : ""}{info.name}</center></td>
                 <td><center>{isOpen ? "จำนวนนักศึกษาที่ลงทะเบียน : " : ""}{info.totalStudents}</center></td>
@@ -26,9 +25,11 @@ const TableSection  = ({ info}: {info: Info}) => {
                     </center>
                 </td>
             </tr>
+            <tr>
             <th colSpan={7}>
             {isOpen && <TableRow info={info}/>}
             </th>
+            </tr>
         </tbody>   
         </>
     )

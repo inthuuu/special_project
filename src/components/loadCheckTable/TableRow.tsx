@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
-import CheckBox from '../CheckBox';
-import { professor } from '../../Props/sectionProps';
+import CheckBox from './CheckBox';
+import { professor, teachingWeek } from '../../Props/sectionProps';
 import './Table.css'
 
 export const TableRow = ({info}:{info: any}) => {
@@ -15,8 +15,8 @@ export const TableRow = ({info}:{info: any}) => {
   const handleAllSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAllSelect(event.target.checked)
     setSomeSelect(!event.target.checked)
-    let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
-      return {...checkedBox, isChecked: true}
+    let tempCheckedBox = checkedBoxs.map(()=> {
+      return {...info.teachingWeek, isChecked: true}
     })
     setCheckedBox(tempCheckedBox);
   }
@@ -29,14 +29,15 @@ export const TableRow = ({info}:{info: any}) => {
 
   const handleCheckedBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, checked} = event.target
+
     if(allSelect) {
-      let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
-        return {...checkedBox, isChecked: true}
+      let tempCheckedBox = checkedBoxs.map(()=> {
+        return {...info.teachingWeek, isChecked: true}
       })
       setCheckedBox(tempCheckedBox);
     } else {
       let tempCheckedBox = checkedBoxs.map((checkedBox)=> {
-        return checkedBox.name === name ? {...checkedBox, isChecked: checked} : checkedBox 
+        return checkedBox.name === name ? {...info.teachingWeek, isChecked: checked} : checkedBox 
       })
       setCheckedBox(tempCheckedBox);
       if(checked) {
@@ -54,6 +55,7 @@ export const TableRow = ({info}:{info: any}) => {
                 <div className="col-sm"><h6> คณะ: {info.faculty}</h6></div>
                 <div className="col-sm"><h6>สาขา: {info.department}</h6> </div>
                 <div className="col-sm"><h6>กลุ่ม: {info.sectionId} </h6></div>
+                <div className="col-sm"><h6>{info.typeLearning} </h6></div>
             </div>
             <br />
             <h5>อาจารย์ผู้สอน</h5><br />
@@ -94,11 +96,13 @@ export const TableRow = ({info}:{info: any}) => {
                 <tbody>
                   <tr>
                     <th colSpan={1} scope="col-sm-8">
+                      <div className='row'>
                       {checkedBoxs.map((checkedBox, index)=>(
                         <>
-                          <CheckBox index={index+1} name={checkedBox.name} isChecked={checkedBox.isChecked} onChange={handleCheckedBox} teachingWeek={info.teachingWeek}></CheckBox>
+                          <CheckBox index={index+1} name={checkedBox.name} isChecked={checkedBox.isChecked} onChange={handleCheckedBox} teachingWeek={checkedBox} typeLearning={info.typeLearning}></CheckBox>
                         </>
                       ))}
+                      </div>
                       </th>
                     <td> {info.totalWeek} </td>
                   </tr>

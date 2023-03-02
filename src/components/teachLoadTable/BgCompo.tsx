@@ -1,37 +1,37 @@
-import { idText } from "typescript";
-
 interface color {
-    teacherId: string,
+    teacherId: string | null,
     color: string
 }
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
-const BgColors = ({teacherId, index}: {teacherId: Array<color>, index: any}) => {
+const BgColors = ({teacherId}: {teacherId: Array<any>;}) => {
 
     let bgColors = new Array<color>();
-
     for(let i = 0; i < teacherId.length; i++) {
-        for(let j = 0; j < colors.length; j++) {
-            bgColors.push({
-                teacherId: teacherId[i].teacherId,
-                color: colors[i]
-            })
+        for(let j = 0; j < colors.length; j++) {   
+            if(teacherId[i] != null) {
+                bgColors.push({
+                    teacherId: teacherId[i],
+                    color: colors[i]
+                })
+            } else {
+                bgColors.push({
+                    teacherId: teacherId[i],
+                    color: ''
+                })
+            }
         }
     }
+    
     return (
         <>
-        <div>
-            <td>
-                {index}
-                {bgColors.map((color: color)=> (
-                    <>
-                    <td className={color.color}>
-                    </td>
-                    </>  
-                ))
-                }
-            </td>
+        <div> 
+            {bgColors.map((color)=> (
+                <>
+                <td className={color.color}></td>
+                </>
+            ))}  
         </div>
         </>
     )
