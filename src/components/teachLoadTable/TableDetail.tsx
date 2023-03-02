@@ -11,6 +11,7 @@ import React, { useState } from 'react'
 import { teacher } from "../../Props/teacher";
 import { teachloadChecked } from "../../Props/teachloadProbs";
 import DetailData from "./Detail";
+import './teachload.css'
 
 const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<teacher>}) => {
 
