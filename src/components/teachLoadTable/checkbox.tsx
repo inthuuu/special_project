@@ -25,10 +25,6 @@ const CheckboxConfirm = () => {
                         <input className="form-check-input" type="checkbox" name="select" id="allSelect" value={'allSelect'} checked={allSelect} onChange={handleAllSelect} ></input>
                         <label className="form-check-label">ยืนยัน</label>
                         </div>
-                        <div className="col-sm-4 form-check">
-                        <input className="form-check-input"  type="checkbox" name="select" id="someSelect" value={'someSelect'} checked={someSelect} onChange={handleSomeSelect}></input>
-                        <label className="form-check-label">ตีกลับ</label>
-                        </div>
                     </div>
                 </div>
             </div>

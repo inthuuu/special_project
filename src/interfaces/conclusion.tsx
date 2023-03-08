@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component, useState } from "react";
 import { Button } from 'reactstrap'
 import jsPDF from 'jspdf'
-import SearchBox from "../components/searchBox/searchBox";
+//import Overlay from "react-overlay-component";
+
 
 class Conclusion extends Component {
 
@@ -13,12 +14,36 @@ class Conclusion extends Component {
     }
     
     render() {
+        const [isOver, setOverlay] = useState(false);
+
+        const closeOverlay = () => setOverlay(false);
+
+        const configs = {
+            animate: true,
+            top: '5em',
+            clickDismiss: false,
+            escapeDismiss: false,
+            focusOutline: false
+        }
         
         return (
+            <>
             <div>
-            <Button onClick={ this.pdfGenerate }>Dowload</Button>
-
+            <Button onClick={ this.pdfGenerate }>Download</Button>
             </div>
+            <div>
+                <button
+                className="primary"
+                onClick={()=> {
+                    setOverlay(true)
+                }}
+                > open overlay 
+                </button>
+
+                
+            </div>
+            </>
+            
         );
     }
 }

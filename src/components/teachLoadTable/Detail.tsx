@@ -1,6 +1,7 @@
 import { ExpendableButton } from "../expandButton/ExpandableButton";
 import GetData from "./GetData";
 import useOpenController from '../../Hooks/useOpenController';
+import '../teachLoadTable/teachload.css'
 
 const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) => {
 
@@ -9,17 +10,17 @@ const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) 
     return (
         <>
         <tr key={index}>
-            <th scope="row">{isOpen ? "ชื่ออาจารย์ : " : ""}{teacherChecked.name}</th>
-            <th scope="row">{isOpen ? "สถานะ : " : ""}{teacherChecked.teacherChecked ? "ส่งแล้ว" : "ยังไม่ส่ง"}</th>
-            <th scope="row">
-                <ExpendableButton isOpen={isOpen} toggle={toggle} label={"ตรวจภาระงาน"}/>
+            <th scope="col"><center>{isOpen ? "ชื่ออาจารย์ : " : ""}{teacherChecked.name}</center></th>
+            <th scope="col"><center>{isOpen ? "สถานะ : " : ""}{teacherChecked.teacherChecked ? "ส่งแล้ว" : "ยังไม่ส่ง"}</center></th>
+            <th scope="col">
+                <center><ExpendableButton isOpen={isOpen} toggle={toggle} label={"รายละเอียด"} disable={!teacherChecked.teacherChecked}/></center>
             </th>
-            <th scope="row">{isOpen ? "สถานะการยืนยัน : " : ""}{teacherChecked.headOfTeacherChecked? "ตรวจแล้ว" : "ยังไม่ตรวจ"}</th>
+            <th scope="col"><center>{isOpen ? "สถานะการยืนยัน : " : ""}{teacherChecked.headOfTeacherChecked? "ตรวจแล้ว" : "ยังไม่ตรวจ"}</center></th>
         </tr>
         <tr key={index + 1}>
             <th colSpan={7}>
                 {isOpen && 
-                <> <GetData teacherId={teacherChecked.teacherId}></GetData>
+                <> <GetData teacherId={teacherChecked.teacherId} checked={teacherChecked.headOfTeacherChecked}></GetData>
                 </>
                 }
             </th>

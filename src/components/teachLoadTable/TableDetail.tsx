@@ -7,10 +7,11 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { teacher } from "../../Props/teacher";
 import { teachloadChecked } from "../../Props/teachloadProbs";
 import DetailData from "./Detail";
+import '../teachLoadTable/teachload.css'
 
 const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<teacher>}) => {
 
@@ -58,9 +59,8 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                     <th scope="col"><center>ชื่ออาจารย์</center></th>
                     <th scope="col"><center>สถานะ</center></th>
                     <th scope="col"><center>ภาระงาน</center></th>
-                    <th scope="col"><center>ภาระงาน</center></th>
                     <th scope="col"><center>สถานะการยืนยัน</center></th>
-                    <th scope="col"><center>report</center></th>
+
                   </tr>
                 </thead>
 
@@ -69,7 +69,7 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                     <>
                     <DetailData teacherChecked={teacherChecked} index={index}></DetailData>
                     </> 
-                    ))}
+                ))}
                 </tbody>
               </Table>
             </Card>

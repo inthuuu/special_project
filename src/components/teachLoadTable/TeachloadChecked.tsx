@@ -7,11 +7,12 @@ import { useState } from 'react';
 import { Table } from "reactstrap";
 import TeachingWeekTable from "./TeachingWeekTable";
 import CheckboxConfirm from "./checkbox"
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import jsPDF from 'jspdf'
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
-const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
+const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>, checked: boolean}) => {
 
     const [confirm, setConfirm] = useState('');
 
@@ -22,11 +23,11 @@ const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLo
         setConfirm(button.name);
     }
 
-    const handleCancelOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-
-        const button:HTMLButtonElement = event.currentTarget;
-        setConfirm(button.name);
+    const pdfGenerate = () => {
+        var doc = new jsPDF('portrait','px','a4', false);
+        // doc.addPage()
+        // doc.text(60, 0, 'Name')
+        doc.save('load.pdf')
     }
 
     let info = new Array<Info>();
@@ -61,85 +62,109 @@ const Teachload = ({teachloads, sections, subjects}:  {teachloads: Array<teachLo
             }
          }
 
+    
+{/*Card detail */}
     return (
     <>
     <div className="container-fluid">
     <Card>
         {info.map((info) => (
         <>
-        <Card>
-            <div className="row">
-            <div className="row">
-                {/* first row */}
-                <div className="card-header">
+        <Table className="table table-bordered">
+            <thead>
+                <tr>
+                    {checked ? <></>: <th scope="col-sm-8" className="text-danger">ยืนยันภาระงาน</th>}
+                    <th scope="col">รายละเอียด</th>
+                    {checked ? <th scope="col">report</th>: <></>}
+                    
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {checked ? <></> :
+                    <th>
+                    {/*checkbox */}
+                    <CheckboxConfirm></CheckboxConfirm>
+                    </th>
+                }
+                <th>
+                <Card>
                     <div className="row">
-                        <div className="col-sm"><td>รหัสวิชา : {info.subjectCode}</td></div>
-                        <div className="col-sm"><td><h6>ชื่อวิชา : {info.name}</h6></td></div>
-                        <div className="col-sm"><td> {info.typeLearning}</td></div>
-                        <div className="col-sm"><td>คณะ : {info.faculty}</td></div>
-                        <div className="col-sm"><td>สาขา : {info.department}</td></div>
-                    </div>
-                </div>
-                 {/* second row */}
-                 <div className="card-body">
                     <div className="row">
-                        <div className="col-sm"><td>จำนวนนักศึกษาต่อภาคเรียน : {info.totalStudents}</td></div>
-                        <div className="col-sm"><td>จำนวนนักศึกษาต่อสัปดาห์ : {info.totalStudents}</td></div>
-                        <div className="col-sm"><td>จำนวนสัปดาห์ที่สอนต่อภาคเรียน : {info.totalWeek}</td></div>
-                        <div className="col-sm"><td>จำนวนชั่วโมงที่สอนต่อภาคเรียน : {info.totalWeek * 3}</td></div>
-                    </div>
-                </div>
-                {/* third row */}
-                <div className="card-body">
-                    <div className='row'>
-                        <h5>อาจารย์ผู้สอน</h5><br />
-                        <div className='col-sm'>
-                            <ul className='list-group'>
-                                {info.professor && info.professor.map((professor: professor, index: number)=> (
-                                    <>
-                                    <li className= 'list-group-item'>
-                                    <p>
-                                        <td className={colors[index] }></td>
-                                        <td>{professor.name}</td>
-                                    </p>
-                                    </li>
-                                    </>
-                                ))}
-                            </ul>
+                        {/* first row */}
+                        <div className="card-header">
+                            <div className="row">
+                                <div className="col-sm"><td>รหัสวิชา : {info.subjectCode}</td></div>
+                                <div className="col-sm"><td><h6>ชื่อวิชา : {info.name}</h6></td></div>
+                                <div className="col-sm"><td> {info.typeLearning}</td></div>
+                                <div className="col-sm"><td>คณะ : {info.faculty}</td></div>
+                                <div className="col-sm"><td>สาขา : {info.department}</td></div>
+                            </div>
+                        </div>
+                        {/* second row */}
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-sm"><td>จำนวนนักศึกษาต่อภาคเรียน : {info.totalStudents}</td></div>
+                                <div className="col-sm"><td>จำนวนนักศึกษาต่อสัปดาห์ : {info.totalStudents}</td></div>
+                                <div className="col-sm"><td>จำนวนสัปดาห์ที่สอนต่อภาคเรียน : {info.totalWeek}</td></div>
+                                <div className="col-sm"><td>จำนวนชั่วโมงที่สอนต่อภาคเรียน : {info.totalWeek * 3}</td></div>
+                            </div>
+                        </div>
+                        {/* third row */}
+                        <div className="card-body">
+                            <div className='row'>
+                                <h5>อาจารย์ผู้สอน</h5><br />
+                                <div className='col-sm'>
+                                    <ul className='list-group'>
+                                        {info.professor && info.professor.map((professor: professor, index: number)=> (
+                                            <>
+                                            <li className= 'list-group-item'>
+                                            <p>
+                                                <td className={colors[index] }></td>
+                                                <td>{professor.name}</td>
+                                            </p>
+                                            </li>
+                                            </>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {/* table teaching week */}
+                        <div className="card-body">
+                            <h5>หมายเหตุ :</h5><br />
+                            <Table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-sm-8">จำนวนสัปดาห์ที่สอน(ไม่รวมสัปดาห์สอบ)</th>
+                                        <th scope="col">จำนวนชั่วโมงภาระงานต่อภาคเรียน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th colSpan={1} scope="col-sm-8">
+                                        <div className="row">
+                                        {info.teachingWeek?.map((teachingWeek) => (
+                                            <>
+                                            <TeachingWeekTable teachingWeek={teachingWeek} ></TeachingWeekTable>
+                                            </>
+                                        ))}
+                                        </div>
+                                    </th>
+                                    <th scope="col-sm-4"><p className="text-danger">{info.totalTeachload}</p></th>
+                                    </tr>
+                                </tbody>
+                            </Table>
                         </div>
                     </div>
-                </div>
-                {/* table teaching week */}
-                <div className="card-body">
-                    <h5>หมายเหตุ :</h5><br />
-                    <Table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col-sm-8">จำนวนสัปดาห์ที่สอน(ไม่รวมสัปดาห์สอบ)</th>
-                                <th scope="col">จำนวนชั่วโมงภาระงานต่อภาคเรียน</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th colSpan={1} scope="col-sm-8">
-                                <div className="row">
-                                {info.teachingWeek?.map((teachingWeek) => (
-                                    <>
-                                    <TeachingWeekTable teachingWeek={teachingWeek} ></TeachingWeekTable>
-                                    </>
-                                ))}
-                                </div>
-                            </th>
-                            <th scope="col-sm-4"><p className="text-danger">{info.totalTeachload}</p></th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-                {/*checkbox */}
-                <CheckboxConfirm></CheckboxConfirm>
-            </div>
-            </div>    
-        </Card>
+                    </div>    
+                </Card>
+                </th>
+                {checked ? <th><center><Button onClick={pdfGenerate }>Download</Button></center></th>: <></>}
+                </tr>
+            </tbody>
+        </Table>
+        
         </>
         ))}
         {/* button */}

@@ -2,11 +2,14 @@ import React, { memo, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import "./Overlay.css";
+import { teachloadChecked } from "../../Props/teachloadProbs";
+import DetailData from "../teachLoadTable/Detail";
 
 export interface IOverlayProps {
   className?: string;
   timeout?: number;
   isActive?: boolean;
+  teachload?: Array<teachloadChecked>;
   onClick?: (event: React.MouseEvent) => void;
 }
 
@@ -28,6 +31,7 @@ const OverlayComponent: React.FC<IOverlayProps> = ({
       onClick={onClick}
     > 
       <div ref={nodeRef} />
+      <></>
     </CSSTransition>
   );
 };

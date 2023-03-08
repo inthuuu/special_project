@@ -21,7 +21,7 @@ const TableSection  = ({ info}: {info: Info}) => {
                     <center>
                         {isOpen ? "จำนวนสัปดาห์ที่สอนต่อภาคเรียน : " : ""}
                         {info.totalWeek}
-                        <ExpendableButton isOpen={isOpen} toggle={toggle} label={"เลือกสัปดาห์ที่สอน"}/>
+                        <ExpendableButton isOpen={isOpen} toggle={toggle} label={"เลือกสัปดาห์ที่สอน"} disable={false}/>
                     </center>
                 </td>
             </tr>

@@ -7,13 +7,15 @@ import service from '../../Hooks/getInfo';
 import Teachload from "./TeachloadChecked";
 
 type Probs = {
-    teacherId: string
+    teacherId: string,
+    checked: boolean
 };
 
 type State = {
     sections: Array<section>,
     subjects: Array<subject>,
     teachloads: Array<teachLoad>,
+    checked: boolean,
     currentIndex: number
 }
 
@@ -33,6 +35,7 @@ class GetData extends Component<Probs, State> {
             sections: [],
             subjects: [],
             teachloads: [],
+            checked: this.props.checked,
             currentIndex: -1
         }
 
@@ -120,11 +123,11 @@ class GetData extends Component<Probs, State> {
 
     render () {
 
-        const { teachloads, sections, subjects } = this.state
+        const { teachloads, sections, subjects, checked } = this.state
 
         return (
             <>
-            <Teachload teachloads={teachloads} sections={sections} subjects={subjects}></Teachload>
+            <Teachload teachloads={teachloads} sections={sections} subjects={subjects} checked={checked}></Teachload>
             </>
             
         )
