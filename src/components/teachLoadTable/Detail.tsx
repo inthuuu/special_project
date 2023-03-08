@@ -1,7 +1,8 @@
 import { ExpendableButton } from "../expandButton/ExpandableButton";
 import GetData from "./GetData";
 import useOpenController from '../../Hooks/useOpenController';
-import Conclusion from "../../interfaces/conclusion";
+import DowloadButton from "../printButton/dowloadButton";
+import PrintBtn from '../PdfPrint/PdfPrint'
 
 const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) => {
 
@@ -17,7 +18,9 @@ const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) 
             </th>
             <th scope="row"><center>{isOpen ? "สถานะการยืนยัน : " : ""}{teacherChecked.headOfTeacherChecked? "ตรวจแล้ว" : "ยังไม่ตรวจ"}</center></th>
             <th scope="row"><center>{isOpen ? "สถานะการยืนยัน : " : ""}{teacherChecked.headOfTeacherChecked? "ตรวจแล้ว" : "ยังไม่ตรวจ"}</center></th>
-            <center><Conclusion /></center>
+            {/* <center><DowloadButton /><PrintBtn /></center> */}
+            <th scope="row"><center><DowloadButton /></center></th>
+            <th scope="row"><center><PrintBtn /></center></th>
         </tr>
         <tr key={index + 1}>
             <th colSpan={7}>
