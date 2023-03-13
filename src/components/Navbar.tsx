@@ -13,7 +13,7 @@ export function Navbar() {
                         Teachload
                     </Nav.Link>
                     <Nav.Link to="/conclusion" as={NavLink}>
-                        Conclusion
+                        Summary
                     </Nav.Link>
                     <Nav.Link to="/loadCheck" as={NavLink}>
                         LoadCheck

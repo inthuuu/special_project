@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { teacher } from "../../Props/teacher";
 import { teachloadChecked } from "../../Props/teachloadProbs";
 import DetailData from "./Detail";
-import '../teachLoadTable/teachload.css'
+import './teachload.css'
 
 const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<teacher>}) => {
 
@@ -40,17 +40,12 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
           <div className="col"> 
           <h3 className="head"><center>ตรวจภาระงานอาจารย์</center></h3>
           <div className="search">
-              <Container>
-                <Form>
                     <InputGroup className="my-3">
-
                         <Form.Control
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="ค้นหารายชื่อ"
                         />
                     </InputGroup>
-                </Form>
-              </Container>
         </div>
             <Card className="table table-striped">
               <Table className="Table">
@@ -60,7 +55,6 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                     <th scope="col"><center>สถานะ</center></th>
                     <th scope="col"><center>ภาระงาน</center></th>
                     <th scope="col"><center>สถานะการยืนยัน</center></th>
-
                   </tr>
                 </thead>
 

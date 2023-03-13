@@ -7,8 +7,9 @@ import { useState } from 'react';
 import { Table } from "reactstrap";
 import TeachingWeekTable from "./TeachingWeekTable";
 import CheckboxConfirm from "./checkbox"
-import { Button, Card } from "react-bootstrap";
-import jsPDF from 'jspdf'
+import { Card } from "react-bootstrap";
+import PrintBtn from '../PdfPrint/PdfPrint'
+import DownloadButton from "../printButton/downloadButton";
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
@@ -21,13 +22,6 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
 
         const button:HTMLButtonElement = event.currentTarget;
         setConfirm(button.name);
-    }
-
-    const pdfGenerate = () => {
-        var doc = new jsPDF('portrait','px','a4', false);
-        // doc.addPage()
-        // doc.text(60, 0, 'Name')
-        doc.save('load.pdf')
     }
 
     let info = new Array<Info>();
@@ -160,7 +154,7 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
                     </div>    
                 </Card>
                 </th>
-                {checked ? <th><center><Button onClick={pdfGenerate }>Download</Button></center></th>: <></>}
+                {checked ? <th><center><DownloadButton /><PrintBtn /></center></th>: <></>}
                 </tr>
             </tbody>
         </Table>

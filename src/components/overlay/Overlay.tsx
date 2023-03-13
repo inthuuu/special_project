@@ -2,14 +2,14 @@ import React, { memo, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import "./Overlay.css";
-import { teachloadChecked } from "../../Props/teachloadProbs";
-import DetailData from "../teachLoadTable/Detail";
+import GetData from "../teachLoadTable/GetData";
 
 export interface IOverlayProps {
   className?: string;
   timeout?: number;
   isActive?: boolean;
-  teachload?: Array<teachloadChecked>;
+  teacherId: string;
+  checked: boolean;
   onClick?: (event: React.MouseEvent) => void;
 }
 
@@ -17,6 +17,8 @@ const OverlayComponent: React.FC<IOverlayProps> = ({
   className,
   timeout = 300,
   isActive = false,
+  teacherId,
+  checked,
   onClick,
 }) => {
   const nodeRef = useRef(null);
@@ -30,8 +32,11 @@ const OverlayComponent: React.FC<IOverlayProps> = ({
       unmountOnExit
       onClick={onClick}
     > 
-      <div ref={nodeRef} />
-      <></>
+      <div ref={nodeRef}>
+        <h1>teacherID : {teacherId}</h1>
+        <h1>{checked}</h1>
+        <GetData teacherId={teacherId} checked={checked}></GetData>
+      </div>
     </CSSTransition>
   );
 };

@@ -6,6 +6,7 @@ import { teachLoad } from "../../Props/teachloadProbs";
 import service from '../../Hooks/getInfo';
 import Teachload from "./TeachloadChecked";
 
+
 type Probs = {
     teacherId: string,
     checked: boolean
