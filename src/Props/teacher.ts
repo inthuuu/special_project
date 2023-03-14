@@ -1,4 +1,5 @@
 export interface teacher {
     teacherId: string,
-    name: string
+    name: string,
 }
+

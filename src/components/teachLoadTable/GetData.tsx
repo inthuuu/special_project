@@ -61,11 +61,10 @@ class GetData extends Component<Probs, State> {
         let sections = new Array<section>();
 
         items.forEach((item: any)=> {
-            let id = item.id;
             let data = item.data();
 
             sections.push({
-                sectionId: id,
+                sectionId: item.id,
                 subjectCode: data.subjectCode,
                 subjectID: data.subjectId,
                 totalStudents: data.totalStudents,

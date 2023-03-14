@@ -1,7 +1,9 @@
 import TableHead from "../components/teachLoadTable/TableHead";
 
-//ตรวจภาระงานต้องเป็นปุ่ม   
-  const Teachload = () => {
+  const Teachload = ({userDetail}: {userDetail: any}) => {
+
+    
+
     return (
       <>
         {/* Page content */}

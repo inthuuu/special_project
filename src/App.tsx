@@ -1,43 +1,64 @@
-import { Routes, Route } from "react-router-dom"
-import { Container } from 'react-bootstrap';
+import { Container, Form, Col, Button} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-import { Home } from "./interfaces/Home"
-import Teachload from './interfaces/teachload';
-import LoadCheck  from './interfaces/loadCheck';
-import From from './components/Form';
-import Conclusion from "./interfaces/conclusion"
-import { Navbar } from "./components/Navbar"
-import { Button } from "react-bootstrap"
+import { useContext, useRef } from "react";
+import { AuthContext } from "./Auth/AuthContext";
+import { auth } from "./fireauth";
+import FirstPage from './FirstPage';
 
 
 function App() {
 
-  return (
-    <div className='App'>
-    <div className="App-header">
-        KMITL <br />
-        TEACHLOAD
-        <div className="col-md-3 row align-item-end">
-          <Button className="btn">รักชาติ</Button>
-        </div>
-    </div>
-      <div className='App-subheader'>
-    <Navbar />
-    </div>
-    <Container className="mb-4">
-    <Routes>
-      <Route path="/" element={<Home /> } />
-      <Route path="/teachload" element={<Teachload />} />
-      <Route path="/conclusion" element={<Conclusion />} />
-      <Route path="/loadCheck" element={<LoadCheck />} />
-      <Route path="/from" element={<From />} />
-      
-    </Routes>
-  </Container>
+  const user = useContext(AuthContext);
 
-  </div>
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const signIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(
+        emailRef.current!.value,
+        passwordRef.current!.value
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+
+    <>
+
+    {!user ? (
+      <>
+      <div className="App-header">
+      KMITL <br />
+      TEACHLOAD
+      </div>
+      <Container style={{maxWidth: "500px"}} fluid>
+      <Form className="mt-4">
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control ref={emailRef} type="email" placeholder="email@kmitl.ac.th"></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control ref={passwordRef} type="password" placeholder="password"></Form.Control>
+        </Form.Group>
+        <Form.Group><center>
+        <Col>
+          <Button type="button" onClick={signIn}>Sign in</Button>
+        </Col>
+        </center></Form.Group> 
+      </Form>
+    </Container>
+    </>
+    ) : (
+      <>
+      <FirstPage user={user}></FirstPage>
+      </>
+    )}
+    </>
   )
 }
 
