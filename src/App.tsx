@@ -6,7 +6,6 @@ import { AuthContext } from "./Auth/AuthContext";
 import { auth } from "./fireauth";
 import FirstPage from './FirstPage';
 
-
 function App() {
 
   const user = useContext(AuthContext);

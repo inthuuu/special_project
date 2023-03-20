@@ -7,6 +7,7 @@ import Summary from "./interfaces/summary"
 import { Navbar } from "./components/Navbar"
 import { Container, Button} from 'react-bootstrap';
 import { auth } from './fireauth'
+import CalendarApp from './CalendarApp'
 
 const SubHeader = ({user, userDetail, role} : {user: any, userDetail: any, role: any}) => {
     
@@ -44,6 +45,7 @@ const SubHeader = ({user, userDetail, role} : {user: any, userDetail: any, role:
                     <Route path="/summary" element={<Summary />} />
                     <Route path="/loadCheck" element={<LoadCheck />} />
                     <Route path="/from" element={<From />} />
+                    <Route path="/from" element={<CalendarApp />} />
                 </Routes>
             </Container>
             </div>
