@@ -5,6 +5,7 @@ import { useContext, useRef } from "react";
 import { AuthContext } from "./Auth/AuthContext";
 import { auth } from "./fireauth";
 import FirstPage from './FirstPage';
+import Calendar from './CalendarApp'
 
 function App() {
 
@@ -34,7 +35,8 @@ function App() {
       KMITL <br />
       TEACHLOAD
       </div>
-      <Container style={{maxWidth: "500px"}} fluid>
+      <Calendar />
+      {/* <Container style={{maxWidth: "500px"}} fluid>
       <Form className="mt-4">
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
@@ -50,7 +52,7 @@ function App() {
         </Col>
         </center></Form.Group> 
       </Form>
-    </Container>
+    </Container> */}
     </>
     ) : (
       <>
