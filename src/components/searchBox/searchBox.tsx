@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GetData from "../teachLoadTable/GetData";
 import { teachloadChecked } from "../../Props/teachloadProbs";
-import { teacher } from "../../Props/teacher";
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';

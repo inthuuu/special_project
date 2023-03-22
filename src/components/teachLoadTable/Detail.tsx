@@ -1,8 +1,6 @@
 import { ExpendableButton } from "../expandButton/ExpandableButton";
 import GetData from "./GetData";
 import useOpenController from '../../Hooks/useOpenController';
-import DownloadButton from "../printButton/downloadButton";
-import PrintBtn from '../PdfPrint/PdfPrint'
 
 const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) => {
 

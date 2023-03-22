@@ -19,6 +19,10 @@ class GetInfo {
         return teachloadDb.doc(teacherId).collection("teachload");
     }
 
+    getSemester (teacherId: string) {
+        return teachloadDb.doc(teacherId);
+    }
+
     getAllTeachload () {
         return teachloadDb;
     }

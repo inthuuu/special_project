@@ -1,16 +1,18 @@
 import List from "../components/List";
-import TableSubject from "../components/loadCheckTable/TableGetData";
+import TableSubject from "../components/loadCheckTable/TableSubject";
+import '../App.css'
 
-const LoadCheck = () => {
+const LoadCheck = ({teacherId, roleName, name}: {teacherId: any, roleName: any, name: any}) => {
 
     return (
         <>
-        <div className="loadCheck">
+        <div className="loadCheck element">
             {/*<TableCheck />*/}
-            <TableSubject></TableSubject>
+            <TableSubject teacherId={teacherId} roleName={roleName} name={name}></TableSubject>
         </div>
+            {/*Special problem list */}
         <div className="container">
-            <List></List>
+            <List teacherId={teacherId}></List>
         </div>
         </>
     );

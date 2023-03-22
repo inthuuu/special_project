@@ -2,11 +2,13 @@ import { Component } from "react";
 import { NavLink } from "react-router-dom"
 import { Nav } from "react-bootstrap"
 import Title from "../Props/titleProbs";
-import service from '../Hooks/firestoreService'
+import service from '../Hooks/getSpecialProblem'
 import Table from 'react-bootstrap/Table';
 import '../components/loadCheckTable/Table.css'
 
-type Probs = {};
+type Probs = {
+    teacherId: any
+};
 
 type State = {
     titles: Array<Title>,
@@ -33,7 +35,7 @@ class List extends Component<Probs, State>{
     }
 
     componentDidMount(){
-        this.unsubscribe = service.getTitle('1').orderBy("title", "asc").onSnapshot(this.onDateChange);
+        this.unsubscribe = service.getTitle(this.props.teacherId).orderBy("title", "asc").onSnapshot(this.onDateChange);
     }
 
     componentWillUnmount() {
@@ -94,13 +96,13 @@ class List extends Component<Probs, State>{
                         </tr>
                         {titles && titles.map((titles, index)=> (
                             <tr key={index}>
-                            <td scope='row'>{titles.title}</td>
-                            <td scope='row'>{titles.degree}</td>
-                            <td scope='row'>{titles.studentName.map((studentName)=> (
+                            <td >{titles.title}</td>
+                            <td >{titles.degree}</td>
+                            <td >{titles.studentName.map((studentName)=> (
                                <ul>  {studentName.name} </ul> ))}</td>
-                            <td scope='row'>{titles.advisorName.map((advisorName)=> (
+                            <td >{titles.advisorName.map((advisorName)=> (
                                 <ul>{advisorName.name} </ul>))}</td>
-                            <td scope='row'>แก้ไข/ลบ</td> 
+                            <td >แก้ไข/ลบ</td> 
                             </tr>
                             
                             ))} 
@@ -108,7 +110,7 @@ class List extends Component<Probs, State>{
                 </Table>
             </div>
             <div className="addSpe">
-                 <Nav.Link to="/from" as={NavLink}>
+                 <Nav.Link to="/form" as={NavLink}>
                     + เพิ่มชื่อเรื่อง
                  </Nav.Link>
              </div>

@@ -3,17 +3,16 @@ import {
     Table,
     Row,
   } from "reactstrap";
-import Container from 'react-bootstrap/Container';
+  
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react'
-import { teacher } from "../../Props/teacher";
 import { teachloadChecked } from "../../Props/teachloadProbs";
 import DetailData from "./Detail";
 import './teachload.css'
 
-const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<teacher>}) => {
+const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<any>}) => {
 
     let teachload = new Array<teachloadChecked>();
 

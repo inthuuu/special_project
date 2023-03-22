@@ -11,7 +11,7 @@ import { subject } from "../../Props/subjectProps";
 import TableSection from "./TableSection";
 import './Table.css'
 
-const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>}) => {
+const TableHead = ({teachloads, sections, subjects, semester, roleName, name}:  {teachloads: Array<teachLoad>, sections:  Array<section>, subjects: Array<subject>, semester: any, roleName: any, name: any}) => {
 
         let info = new Array<Info>();
         
@@ -48,19 +48,22 @@ const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachL
     return (
         <>
          {/*page content */}
-         <div className="container">
+
+         <Card>
+         <div className="container card-header">
             <div className="row">
                 <div className="col-sm">
-                    name
+                    ชื่อ: {name}
                 </div>
                 <div className="col-sm">
-                    position
+                    ตำแหน่ง: {roleName}
                 </div>
                 <div className="col-sm">
-                    semester
+                    ภาคการศึกษา: {semester}
                 </div>
             </div>
         </div>
+        </Card>
         {/*table */}
         <Row className="mt-5">
             <div className="col">
@@ -94,4 +97,4 @@ const TableCheck = ({teachloads, sections, subjects}:  {teachloads: Array<teachL
     );
 };
 
-export default TableCheck;
+export default TableHead;

@@ -3,15 +3,19 @@ import { section } from "../../Props/sectionProps";
 import { subject } from "../../Props/subjectProps";
 import { teachLoad } from "../../Props/teachloadProbs";
 import service from '../../Hooks/getInfo'
-import TableCheck from "./TableHead";
+import TableHead from "./TableHead";
 
-
-type Probs = {};
+type Probs = {
+    teacherId: any
+    name: any
+    roleName: any
+};
 
 type State = {
     sections: Array<section>,
     subjects: Array<subject>,
     teachloads: Array<teachLoad>,
+    semester: string,
     currentIndex: number
 }
 
@@ -20,35 +24,41 @@ class TableSubject extends Component<Probs, State> {
     "unsubscribeSection" : () => void;
     "unsubscribeSubject" : () => void;
     "unsubscribeTeachLoad" : () => void;
+    "unsubscribeSemester": () => void;
 
     constructor(props: Probs) {
         super(props)
         this.onSections = this.onSections.bind(this);
         this.onSubject = this.onSubject.bind(this);
         this.onTeachload = this.onTeachload.bind(this);
+        this.onSemester = this.onSemester.bind(this);
 
         this.state = {
             sections: [],
             subjects: [],
             teachloads: [],
+            semester: '',
             currentIndex: -1
         }
 
         this.unsubscribeSection = () => {};
         this.unsubscribeSubject = () => {};
         this.unsubscribeTeachLoad = () => {};
+        this.unsubscribeSemester = () => {};
     }
 
     componentDidMount() {
         this.unsubscribeSection = service.getAllSection().orderBy("subjectCode").onSnapshot(this.onSections);
         this.unsubscribeSubject = service.getAllSubject().orderBy("subjectCode").onSnapshot(this.onSubject);
-        this.unsubscribeTeachLoad = service.getTeachload("1").onSnapshot(this.onTeachload);
+        this.unsubscribeTeachLoad = service.getTeachload(this.props.teacherId).onSnapshot(this.onTeachload);
+        this.unsubscribeSemester = service.getSemester(this.props.teacherId).onSnapshot(this.onSemester);
     }
 
     componentWillUnmount() {
         this.unsubscribeSection();
         this.unsubscribeSubject();
         this.unsubscribeTeachLoad();
+        this.unsubscribeSemester();
     }
 
     onSections(items: any) {
@@ -116,13 +126,19 @@ class TableSubject extends Component<Probs, State> {
         })
     }
 
+    onSemester(items: any) {
+        this.setState({
+            semester: items.get("semester")
+        })
+    }
+
     render () {
 
-        const { teachloads, sections, subjects } = this.state
+        const { teachloads, sections, subjects, semester } = this.state
 
         return (
             <>
-             <TableCheck teachloads={teachloads} sections={sections} subjects={subjects}></TableCheck>
+             <TableHead teachloads={teachloads} sections={sections} subjects={subjects} semester={semester} roleName={this.props.roleName} name={this.props.name}></TableHead>
             </>
             
         )

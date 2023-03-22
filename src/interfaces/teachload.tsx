@@ -1,13 +1,11 @@
 import TableHead from "../components/teachLoadTable/TableHead";
 
-  const Teachload = ({userDetail}: {userDetail: any}) => {
-
-    
+  const Teachload = ({roleId}: {roleId: any}) => {
 
     return (
       <>
         {/* Page content */}
-        <TableHead></TableHead>
+        <TableHead roleId={roleId}></TableHead>
       </>
       
     );

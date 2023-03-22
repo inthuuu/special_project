@@ -1,8 +1,11 @@
 import React, { ChangeEvent, Component} from 'react'
 import "firebase/database";
 import Title from '../Props/titleProbs';
-import service from "../Hooks/firestoreService"
-type Probs = {};
+import service from "../Hooks/getSpecialProblem"
+
+type Probs = {
+  teacherId: any
+};
 
 type State = Title & {
   submitted: boolean;
@@ -109,7 +112,7 @@ class Form extends Component<Probs, State> {
       advisorName: advisor
     };
 
-    service.create(data, "1").then(() => {
+    service.create(data, this.props.teacherId).then(() => {
       this.setState({
         submitted: true
       });

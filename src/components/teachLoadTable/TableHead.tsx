@@ -3,13 +3,14 @@ import { Component } from "react";
 import service from '../../Hooks/getInfo'
 import TableDetail from "./TableDetail";
 import { teachloadChecked } from "../../Props/teachloadProbs";
-import { teacher } from "../../Props/teacher";
 
-type Probs = {};
+type Probs = {
+    roleId: any
+};
 
 type State = {
     teachloads: Array<teachloadChecked>,
-    teachers: Array<teacher>,
+    teachers: Array<any>,
     currentIndex: number
 }
 
@@ -44,7 +45,7 @@ class TableHead extends Component<Probs, State> {
     }
 
     onTeacher(items: any) {
-      let teachers = new Array<teacher>();
+      let teachers = new Array<any>();
 
       items.forEach((item: any) => {
         let data = item.data();
@@ -89,7 +90,7 @@ class TableHead extends Component<Probs, State> {
 
         return (
             <>
-            <TableDetail teachers={teachers} teachloads={teachloads}></TableDetail>
+            <TableDetail teachers={teachers} teachloads={teachloads} ></TableDetail>
             </>
         )
         

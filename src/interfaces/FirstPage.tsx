@@ -1,14 +1,17 @@
 import { Component } from "react"
-import { userDetail } from "./Props/userDetail";
-import service from "./Hooks/getUser"
-import SubHeader from './subHeader';
+import service from "../Hooks/getUser"
+import SubHeader from '../components/subHeader';
 
 type Probs = {
     user: any
 }
 
 type State = {
-    userDetail: Array<userDetail>,
+    userId: string,
+    teacherId: string,
+    email: string,
+    name: string,
+    roleId: string,
     role: Array<any>
 }
 
@@ -24,7 +27,11 @@ class FirstPage extends Component<Probs, State> {
         this.onRole = this.onRole.bind(this);
 
         this.state = {
-            userDetail: [],
+            userId: "",
+            teacherId: "",
+            email: "",
+            name: "",
+            roleId: "",
             role: []
         }
 
@@ -43,19 +50,12 @@ class FirstPage extends Component<Probs, State> {
     }
 
     onUser(items: any) {
-        let userDetail = new Array<userDetail>();
-        let data = items.data;
-
-        userDetail.push({
-            uid: items.id,
-            teacherId: data.teacherId,
-            roleId: data.roleId,
-            name: data.name,
-            email: data.email
-        })
-
         this.setState({
-            userDetail: userDetail
+            userId: items.id,
+            teacherId: items.get("teacherId"),
+            email: items.get("email"),
+            name: items.get("name"),
+            roleId: items.get("roleId"),
         })
     }
 
@@ -78,11 +78,11 @@ class FirstPage extends Component<Probs, State> {
 
     render() {
 
-    const { userDetail, role } = this.state
+    const { name, email, teacherId, roleId, userId, role } = this.state
 
     return (
         <>
-        <SubHeader user={this.props.user} userDetail={userDetail} role={role}></SubHeader>
+        <SubHeader name={name} email={email} teacherId={teacherId} roleId={roleId} userId={userId} role={role}></SubHeader>
         </>
     )
     }
