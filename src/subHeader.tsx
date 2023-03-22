@@ -45,7 +45,7 @@ const SubHeader = ({user, userDetail, role} : {user: any, userDetail: any, role:
                     <Route path="/summary" element={<Summary />} />
                     <Route path="/loadCheck" element={<LoadCheck />} />
                     <Route path="/from" element={<From />} />
-                    <Route path="/from" element={<CalendarApp />} />
+                    <Route path="/calendar" element={<CalendarApp />} />
                 </Routes>
             </Container>
             </div>

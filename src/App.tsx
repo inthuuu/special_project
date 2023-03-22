@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useContext, useRef } from "react";
 import { AuthContext } from "./Auth/AuthContext";
 import { auth } from "./fireauth";
-import FirstPage from './FirstPage';
-import Calendar from './CalendarApp'
+import Navbar from './components/userNavbar/userNavbar';
 
 function App() {
 
@@ -28,14 +27,16 @@ function App() {
   return (
 
     <>
-
+    
     {!user ? (
       <>
       <div className="App-header">
       KMITL <br />
       TEACHLOAD
+      <Navbar />
       </div>
-      <Calendar />
+      
+
       {/* <Container style={{maxWidth: "500px"}} fluid>
       <Form className="mt-4">
         <Form.Group controlId="formEmail">
@@ -56,7 +57,7 @@ function App() {
     </>
     ) : (
       <>
-      <FirstPage user={user}></FirstPage>
+      {/* <FirstPage user={user}></FirstPage> */}
       </>
     )}
     </>
