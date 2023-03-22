@@ -12,5 +12,6 @@ export interface teachloadChecked {
     financeChecked: boolean,
     headOfTeacherChecked: boolean,
     regChecked: boolean,
+    hrChecked: boolean,
     teacherChecked: boolean,
 }

@@ -8,7 +8,7 @@ import { Navbar } from "./Navbar"
 import { Routes, Route } from "react-router-dom"
 import { Container, Button} from 'react-bootstrap';
 import { auth } from '../fireauth'
-import Calender from '../CalendarApp'
+import Calender from '../interfaces/CalendarApp'
 
 const SubHeader = ({name, email, teacherId, roleId, userId, role} : {name: any, email: any, teacherId: any, roleId: any, userId: any, role: any}) => {
 

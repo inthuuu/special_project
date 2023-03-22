@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
-import GlobalContext from "../context/GlobalContext";
+import GlobalContext from "../../context/GlobalContext";
+import './Calendar.css'
+import bin from '../../assets/bin.png'
+import close from '../../assets/close.png'
 
 const labelsClasses = [
   "indigo",
@@ -9,6 +12,7 @@ const labelsClasses = [
   "red",
   "purple",
 ];
+
 
 export default function EventModal() {
   const {
@@ -51,10 +55,10 @@ export default function EventModal() {
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl w-1/4">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
-          <span className="material-icons-outlined text-gray-400">
+          {/* <span className="material-icons-outlined text-gray-400">
             drag_handle
-          </span>
-          <div>
+          </span> */}
+          {/* <div> */}
             {selectedEvent && (
               <span
                 onClick={() => {
@@ -64,17 +68,17 @@ export default function EventModal() {
                   });
                   setShowEventModal(false);
                 }}
-                className="material-icons-outlined text-gray-400 cursor-pointer"
+                className="cursor-pointer"
               >
-                delete
+                <img src={bin} className="bin"/>
               </span>
             )}
             <button onClick={() => setShowEventModal(false)}>
               <span className="material-icons-outlined text-gray-400">
-                close
+              <img src={close} className="close"/>
               </span>
             </button>
-          </div>
+          {/* </div> */}
         </header>
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
@@ -85,15 +89,15 @@ export default function EventModal() {
               placeholder="Add title"
               value={title}
               required
-              className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="border-5 text-gray-600 text-xl fs-3 fw-bold pb-2 w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
+            {/* <span className="schedule">
               schedule
-            </span>
-            <p>{daySelected.format("dddd, MMMM DD")}</p>
-            <span className="material-icons-outlined text-gray-400">
-              segment
+            </span> */}
+            <p className="Day">{daySelected.format("dddd, MMMM DD")}</p>
+            <span className="pt-3">
+              description
             </span>
             <input
               type="text"
@@ -101,12 +105,12 @@ export default function EventModal() {
               placeholder="Add a description"
               value={description}
               required
-              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              className="border-3 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setDescription(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
+            {/* <span className="material-icons-outlined text-gray-400">
               bookmark_border
-            </span>
+            </span> */}
             <div className="flex gap-x-2">
               {labelsClasses.map((lblClass, i) => (
                 <span
@@ -116,7 +120,7 @@ export default function EventModal() {
                 >
                   {selectedLabel === lblClass && (
                     <span className="material-icons-outlined text-white text-sm">
-                      check
+                      ✓
                     </span>
                   )}
                 </span>

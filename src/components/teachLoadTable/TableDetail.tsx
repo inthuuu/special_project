@@ -12,7 +12,7 @@ import { teachloadChecked } from "../../Props/teachloadProbs";
 import DetailData from "./Detail";
 import './teachload.css'
 
-const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecked>, teachers: Array<any>}) => {
+const TableDetail = ({teachloads, teachers, roleId} : {teachloads: Array<teachloadChecked>, teachers: Array<any>, roleId: any} ) => {
 
     let teachload = new Array<teachloadChecked>();
 
@@ -27,7 +27,9 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                     financeChecked: teachloads[i].financeChecked,
                     headOfTeacherChecked: teachloads[i].headOfTeacherChecked,
                     regChecked: teachloads[i].regChecked,
+                    hrChecked: teachloads[i].hrChecked,
                     teacherChecked: teachloads[i].teacherChecked,
+                    
                 })
             }
         }
@@ -60,7 +62,7 @@ const TableDetail = ({teachloads, teachers} : {teachloads: Array<teachloadChecke
                 <tbody>
                 {teachload.map((teacherChecked, index)=> (
                     <>
-                    <DetailData teacherChecked={teacherChecked} index={index}></DetailData>
+                    <DetailData teacherChecked={teacherChecked} index={index} roleId={roleId}></DetailData>
                     </> 
                 ))}
                 </tbody>

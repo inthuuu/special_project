@@ -3,6 +3,10 @@ import { Table } from 'react-bootstrap';
 import CheckBox from './CheckBox';
 import { professor, teachingWeek } from '../../Props/sectionProps';
 import './Table.css'
+import '../teachLoadTable/TeachingWeekTable'
+import TeachingWeekTable from '../teachLoadTable/TeachingWeekTable';
+
+let colors = ["color1", "color2", "color3", "color4", "color5"]
 
 export const TableRow = ({info}:{info: any}) => {
   
@@ -64,7 +68,8 @@ export const TableRow = ({info}:{info: any}) => {
                 <ul className='list-group'>
                 {info.professor && info.professor.map((professor: professor, index: number)=> (
                     <li className='list-group-item'>
-                      {professor.name}
+                      <td className={colors[index] }></td>
+                      <td>{professor.name}</td>
                     </li>
                 ))}
                 </ul>
@@ -99,7 +104,7 @@ export const TableRow = ({info}:{info: any}) => {
                       <div className='row'>
                       {checkedBoxs.map((checkedBox, index)=>(
                         <>
-                          <CheckBox index={index+1} name={checkedBox.name} isChecked={checkedBox.isChecked} onChange={handleCheckedBox} teachingWeek={checkedBox} typeLearning={info.typeLearning}></CheckBox>
+                          <CheckBox index={index+1} name={checkedBox.name} isChecked={checkedBox.isChecked} onChange={handleCheckedBox} teachingWeek={info.teachingWeek} typeLearning={info.typeLearning}></CheckBox>
                         </>
                       ))}
                       </div>

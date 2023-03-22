@@ -2,9 +2,22 @@ import { ExpendableButton } from "../expandButton/ExpandableButton";
 import GetData from "./GetData";
 import useOpenController from '../../Hooks/useOpenController';
 
-const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) => {
+const DetailData = ({teacherChecked, index, roleId}: {teacherChecked:any, index: any, roleId: any} ) => {
 
     const { isOpen, toggle } = useOpenController(false);
+
+    let checkStatus;
+
+    if(roleId === '2') {
+        checkStatus = teacherChecked.headOfTeacherChecked;
+    } else if (roleId === '3') {
+        checkStatus = teacherChecked.regChecked;
+    } else if (roleId === '4') {
+        checkStatus = teacherChecked.hrChecked;
+    } else if (roleId === '5') {
+        checkStatus = teacherChecked.financeChecked;
+    }
+
 
     return (
         <>
@@ -14,13 +27,13 @@ const DetailData = ({teacherChecked, index}: {teacherChecked:any, index: any} ) 
             <th scope="col">
                 <center><ExpendableButton isOpen={isOpen} toggle={toggle} label={"รายละเอียด"} disable={!teacherChecked.teacherChecked}/></center>
             </th>
-            <th scope="col"><center>{isOpen ? "สถานะการยืนยัน : " : ""}{teacherChecked.headOfTeacherChecked? <p className="text-secondary">ตรวจแล้ว</p> : <p className="text-danger">ยังไม่ตรวจ</p>}</center></th>
+            <th scope="col"><center>{isOpen ? "สถานะการยืนยัน : " : ""}{checkStatus? <p className="text-secondary">ตรวจแล้ว</p> : <p className="text-danger">ยังไม่ตรวจ</p>}</center></th>
         </tr>
         <tr key={index + 1}>
             <th colSpan={7}>
                 {isOpen && 
                 <> 
-                <GetData teacherId={teacherChecked.teacherId} checked={teacherChecked.headOfTeacherChecked}></GetData>
+                <GetData teacherId={teacherChecked.teacherId} checked={checkStatus}></GetData>
                 </>
                 }
             </th>

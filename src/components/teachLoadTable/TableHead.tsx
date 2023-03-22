@@ -76,6 +76,7 @@ class TableHead extends Component<Probs, State> {
                 headOfTeacherChecked: data.headOfTeacherChecked,
                 regChecked: data.regChecked,
                 teacherChecked: data.teacherChecked,
+                hrChecked: data.hrChecked
             })
         })
 
@@ -90,7 +91,7 @@ class TableHead extends Component<Probs, State> {
 
         return (
             <>
-            <TableDetail teachers={teachers} teachloads={teachloads} ></TableDetail>
+            <TableDetail  teachers={teachers} teachloads={teachloads} roleId={this.props.roleId} ></TableDetail>
             </>
         )
         
