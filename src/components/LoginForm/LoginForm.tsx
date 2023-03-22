@@ -28,21 +28,25 @@ const LoginForm = () => {
         </div>
         <div className='text'>Login</div>
         <Container className='card' style={{maxWidth: "500px"}} fluid>
+            <div className='form'>
+                <br/>
             <Form className="mt-4 element">
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="email@kmitl.ac.th"></Form.Control>
                 </Form.Group>
+                <br/>
                 <Form.Group controlId="formPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control ref={passwordRef} type="password" placeholder="password"></Form.Control>
                 </Form.Group>
                 <Form.Group className='element'><center>
                     <Col>
-                        <Button className='btn' type="button" onClick={signIn}>Sign in</Button>
+                        <Button className='Signbtn' type="button" onClick={signIn}>Sign in</Button>
                     </Col>
                 </center></Form.Group> 
             </Form>
+            </div>
         </Container>
         
         </>
