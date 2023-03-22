@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useContext } from "react";
 import { AuthContext } from "./Auth/AuthContext";
 import FirstPage from './interfaces/FirstPage';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/LoginForm/LoginForm';
 
 function App() {
 

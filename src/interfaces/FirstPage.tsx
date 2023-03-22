@@ -1,6 +1,7 @@
 import { Component } from "react"
 import service from "../Hooks/getUser"
 import SubHeader from '../components/subHeader';
+import Userbtn from '../components/userNavbar/userNavbar'
 
 type Probs = {
     user: any
@@ -82,6 +83,7 @@ class FirstPage extends Component<Probs, State> {
 
     return (
         <>
+        <Userbtn />
         <SubHeader name={name} email={email} teacherId={teacherId} roleId={roleId} userId={userId} role={role}></SubHeader>
         </>
     )

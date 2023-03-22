@@ -1,6 +1,7 @@
-import { Container, Form, Col, Button} from 'react-bootstrap';
+import { Container, Form, Col, Button, Card } from 'react-bootstrap';
 import { useRef } from "react"
-import { auth } from "../fireauth";
+import { auth } from "../../fireauth";
+import './LoginForm.css'
 
 const LoginForm = () => {
 
@@ -25,8 +26,8 @@ const LoginForm = () => {
             KMITL <br />
             TEACHLOAD
         </div>
-
-        <Container style={{maxWidth: "500px"}} fluid>
+        <div className='text'>Login</div>
+        <Container className='card' style={{maxWidth: "500px"}} fluid>
             <Form className="mt-4 element">
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email</Form.Label>
@@ -43,6 +44,7 @@ const LoginForm = () => {
                 </center></Form.Group> 
             </Form>
         </Container>
+        
         </>
     )
 }

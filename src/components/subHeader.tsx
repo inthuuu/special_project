@@ -30,9 +30,10 @@ const SubHeader = ({name, email, teacherId, roleId, userId, role} : {name: any, 
             <div className="App-header">
                 KMITL <br />
                 TEACHLOAD
-            <div className="justify-content-between">
+
+            {/* <div className="justify-content-between">
                 <Button onClick={signOut}>{name}</Button>
-            </div>
+            </div> */}
             
             </div>
 
