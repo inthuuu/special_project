@@ -27,7 +27,7 @@ const LoginForm = () => {
             TEACHLOAD
         </div>
         <div className='text'>Login</div>
-        <Container className='card' style={{maxWidth: "500px"}} fluid>
+        <Container className='cardLogin' style={{maxWidth: "500px"}} fluid>
             <div className='form'>
                 <br/>
             <Form className="mt-4 element">
