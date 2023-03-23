@@ -27,9 +27,9 @@ const BgColors = ({teacherId}: {teacherId: Array<any>;}) => {
     return (
         <>
         <div> 
-            {bgColors.map((color)=> (
+            {bgColors.map((color, index)=> (
                 <>
-                <td className={color.color}></td>
+                <td key={index} className={color.color}></td>
                 </>
             ))}  
         </div>

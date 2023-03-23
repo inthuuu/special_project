@@ -1,18 +1,22 @@
 import { Component } from "react";
-import { NavLink } from "react-router-dom"
-import { Nav } from "react-bootstrap"
 import Title from "../Props/titleProbs";
 import service from '../Hooks/getSpecialProblem'
 import Table from 'react-bootstrap/Table';
 import '../components/loadCheckTable/Table.css'
+import Modal from "react-bootstrap/Modal";
+import "../components/teachLoadTable/Modal.css"
+import Form from "./Form"
 
 type Probs = {
-    teacherId: any
+    teacherId: any,
+    roleName: any,
+    name: any,
 };
 
 type State = {
     titles: Array<Title>,
     currentTitle: Title | null,
+    showModel: boolean
 }
 
 class List extends Component<Probs, State>{
@@ -29,6 +33,7 @@ class List extends Component<Probs, State>{
         this.state = {
             titles: [],
             currentTitle: null,
+            showModel: false
         }
 
         this.unsubscribe = () => {};
@@ -55,7 +60,7 @@ class List extends Component<Probs, State>{
                 advisorName: data.advisorName,
             })
         })
-
+        
         this.setState({
             titles: titles
         })
@@ -67,19 +72,31 @@ class List extends Component<Probs, State>{
         })
     }
 
-    setTitle(titles: Title, index: number, names: []) {
+    setTitle(titles: Title) {
         this.setState({
             currentTitle: titles
         })
+    }
+
+    handleDelete (teacherId: any, docId: any){
+        service.delete(teacherId, docId);
     }
 
     render() {
 
         const { titles} = this.state;
 
+        const renderBackdrop = (props: any) => <div className="backdrop" {...props} />
+    
+        let handleClose = () => {
+            this.setState({
+                showModel: false
+            })
+        }
+
         return (
             <>
-                <div className="tablespe">
+                <div className="tablespe element">
                 <div className="headspe">
                 <br />
                 <center>รายชื่อปัญหาพิเศษ, โครงการพิเศษ, วิทยานิพนธ์</center>
@@ -102,20 +119,37 @@ class List extends Component<Probs, State>{
                                <ul>  {studentName.name} </ul> ))}</td>
                             <td >{titles.advisorName.map((advisorName)=> (
                                 <ul>{advisorName.name} </ul>))}</td>
-                            <td >แก้ไข/ลบ</td> 
+                            <td >
+                                <button onClick={()=> this.handleDelete(this.props.teacherId,titles.id)}>ลบ</button>/
+                                <button>แก้ไข</button>
+                            </td> 
                             </tr>
                             
                             ))} 
                     </tbody>
                 </Table>
+                <div className="row justify">
+                    <button className="button-add" onClick={() => this.setState({showModel: true})}>เพิ่มหัวข้อ</button>
+                </div>
             </div>
-            <div className="addSpe">
-                 <Nav.Link to="/form" as={NavLink}>
-                    + เพิ่มชื่อเรื่อง
-                 </Nav.Link>
-             </div>
-            </>
 
+            <Modal
+                show={this.state.showModel}
+                onHide={handleClose}
+                renderBackdrop={renderBackdrop}
+                fullscreen={true}
+            >
+                <Modal.Header>
+                    <Modal.Title>ปัญหาพิเศษ</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form teacherId={this.props.teacherId} roleName={this.props.roleName} name={this.props.name}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <div className="justify"><button className="button" onClick={handleClose}>ปิด</button> </div>
+                </Modal.Footer>
+            </Modal>
+            </>
         ) //close return
         } //render
 } //class

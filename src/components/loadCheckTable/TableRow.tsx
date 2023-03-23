@@ -4,7 +4,6 @@ import CheckBox from './CheckBox';
 import { professor, teachingWeek } from '../../Props/sectionProps';
 import './Table.css'
 import '../teachLoadTable/TeachingWeekTable'
-import TeachingWeekTable from '../teachLoadTable/TeachingWeekTable';
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
@@ -54,7 +53,7 @@ export const TableRow = ({info}:{info: any}) => {
   }
 
   return (
-        <div className="tablespe">
+        <div className="tablespe element">
             <div className="row">
                 <div className="col-sm"><h6> คณะ: {info.faculty}</h6></div>
                 <div className="col-sm"><h6>สาขา: {info.department}</h6> </div>

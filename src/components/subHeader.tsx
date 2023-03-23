@@ -46,8 +46,8 @@ const SubHeader = ({name, email, teacherId, roleId, userId, role} : {name: any, 
                     <Route path="/teachload" element={<Teachload roleId={roleId} />} />
                     <Route path="/summary" element={<Summary />} />
                     <Route path="/loadCheck" element={<LoadCheck teacherId={teacherId} roleName={roleName} name={name}/>} />
-                    <Route path="/form" element={<From teacherId={teacherId}/>} />
-                    <Route path='/calender' element={<Calender />}></Route>
+                    <Route path="/form" element={<From teacherId={teacherId} roleName={roleName} name={name}/>} />
+                    <Route path='/calender' element={<Calender />}></Route> 
                 </Routes>
             </Container>
             </div>

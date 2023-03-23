@@ -2,9 +2,13 @@ import React, { ChangeEvent, Component} from 'react'
 import "firebase/database";
 import Title from '../Props/titleProbs';
 import service from "../Hooks/getSpecialProblem"
+import "../App.css"
+import LoadCheck from '../interfaces/loadCheck';
 
 type Probs = {
-  teacherId: any
+  teacherId: any,
+  roleName: any,
+  name: any
 };
 
 type State = Title & {
@@ -104,6 +108,8 @@ class Form extends Component<Probs, State> {
       },
     ]
 
+    
+
     let data = {
       id: this.state.id,
       title: this.state.title,
@@ -112,7 +118,7 @@ class Form extends Component<Probs, State> {
       advisorName: advisor
     };
 
-    service.create(data, this.props.teacherId).then(() => {
+    service.create(data, this.props.teacherId, data.id).then(() => {
       this.setState({
         submitted: true
       });
@@ -153,36 +159,35 @@ class Form extends Component<Probs, State> {
   render () {
     return (
       <>
-      <div className='submit-form'>
+      <div className='submit-form element'>
         {this.state.submitted ? (
           <div>
-            <button className='btn btn-success' onClick={this.newTitle}>Add</button>
+            <LoadCheck teacherId={this.props.teacherId} roleName={this.props.roleName} name={this.props.name}/>
           </div>
         ):(
           <div>
-            <h3>ปัญหาพิเศษ</h3>
             <div className='form-group'>
               <label htmlFor='title'>ชื่อปัญหาพิเศษ</label>
               <input 
-              type="text"
-              className='form-control'
-              id='title'
-              required
-              value={this.state.title}
-              onChange={this.handleOnChange}
-              name="title"
+                type="text"
+                className='form-control'
+                id='title'
+                required
+                value={this.state.title}
+                onChange={this.handleOnChange}
+                name="title"
               ></input>
             </div>
             <div className='form-group'>
               <label htmlFor='title'>ลำดับ</label>
               <input 
-              type="text"
-              className='form-control'
-              id='title'
-              required
-              value={this.state.degree}
-              onChange={this.handleDegreeOnChange}
-              name="title"
+                type="text"
+                className='form-control'
+                id='title'
+                required
+                value={this.state.degree}
+                onChange={this.handleDegreeOnChange}
+                name="title"
               ></input>
             </div>
             <div className='row'>
@@ -190,20 +195,20 @@ class Form extends Component<Probs, State> {
                 <div className='form-group'>
                   <label htmlFor='title'>ชื่อนักศึกษา</label>
                   <input 
-                  type="text"
-                  className='form-control'
-                  id='title'
-                  required
-                  value={this.state.firstName}
-                  onChange={this.handleStudentNameOnChange}
-                  name="title"
+                    type="text"
+                    className='form-control'
+                    id='title'
+                    required
+                    value={this.state.firstName}
+                    onChange={this.handleStudentNameOnChange}
+                    name="title"
                   ></input>
                 </div>
               </div>
             </div>
             <div>
               {this.state.addStudent ? (
-                <div>
+                <div className='element'>
                   <button className='btn btn-success' onClick={this.newStudent}>Add</button>
                 </div>
               ):(
@@ -245,8 +250,7 @@ class Form extends Component<Probs, State> {
             </div>
             <div>
                 {this.state.addAdvisor ? (
-                  <div>
-                    <></>
+                  <div className='element'>
                     <button className='btn btn-success' onClick={this.newAdvisor}>Add</button>
                   </div>
                 ):(
@@ -273,7 +277,6 @@ class Form extends Component<Probs, State> {
           <center>
           <button onClick={this.saveTitle} className='btn btn-success'> Submit </button>
           </center>
-            
           </div>
         )}
       </div>

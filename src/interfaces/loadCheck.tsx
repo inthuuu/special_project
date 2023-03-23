@@ -12,7 +12,7 @@ const LoadCheck = ({teacherId, roleName, name}: {teacherId: any, roleName: any, 
         </div>
             {/*Special problem list */}
         <div className="container">
-            <List teacherId={teacherId}></List>
+            <List teacherId={teacherId} roleName={roleName} name={name}></List>
         </div>
         </>
     );

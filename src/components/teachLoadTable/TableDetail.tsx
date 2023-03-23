@@ -62,7 +62,9 @@ const TableDetail = ({teachloads, teachers, roleId} : {teachloads: Array<teachlo
                 <tbody>
                 {teachload.map((teacherChecked, index)=> (
                     <>
-                    <DetailData teacherChecked={teacherChecked} index={index} roleId={roleId}></DetailData>
+                    <tr key={index} className="modal-example">
+                      <DetailData teacherChecked={teacherChecked} index={index} roleId={roleId}></DetailData>
+                    </tr>
                     </> 
                 ))}
                 </tbody>

@@ -1,15 +1,17 @@
+import TeachingWeekTable from "./TeachingWeekTable";
+import CheckboxConfirm from "./checkbox"
+import PrintBtn from '../PdfPrint/PdfPrint'
+import DownloadButton from "../printButton/downloadButton";
 import { Info } from "../../Props/info";
 import { section } from "../../Props/sectionProps";
 import { teachLoad } from "../../Props/teachloadProbs";
 import { subject } from "../../Props/subjectProps";
 import { professor } from "../../Props/sectionProps";
+
 import { useState } from 'react';
 import { Table } from "reactstrap";
-import TeachingWeekTable from "./TeachingWeekTable";
-import CheckboxConfirm from "./checkbox"
 import { Card } from "react-bootstrap";
-import PrintBtn from '../PdfPrint/PdfPrint'
-import DownloadButton from "../printButton/downloadButton";
+
 
 let colors = ["color1", "color2", "color3", "color4", "color5"]
 
@@ -88,11 +90,11 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
                         {/* first row */}
                         <div className="card-header">
                             <div className="row">
-                                <div className="col-sm"><td>รหัสวิชา : {info.subjectCode}</td></div>
-                                <div className="col-sm"><td><h6>ชื่อวิชา : {info.name}</h6></td></div>
-                                <div className="col-sm"><td> {info.typeLearning}</td></div>
-                                <div className="col-sm"><td>คณะ : {info.faculty}</td></div>
-                                <div className="col-sm"><td>สาขา : {info.department}</td></div>
+                                <div className="col-sm">รหัสวิชา : {info.subjectCode}</div>
+                                <div className="col-sm"><h6>ชื่อวิชา : {info.name}</h6></div>
+                                <div className="col-sm"> {info.typeLearning}</div>
+                                <div className="col-sm">คณะ : {info.faculty}</div>
+                                <div className="col-sm">สาขา : {info.department}</div>
                             </div>
                         </div>
                         {/* second row */}
@@ -109,14 +111,12 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
                             <div className='row'>
                                 <h5>อาจารย์ผู้สอน</h5><br />
                                 <div className='col-sm'>
-                                    <ul className='list-group'>
+                                    <ul className='list-group row'>
                                         {info.professor && info.professor.map((professor: professor, index: number)=> (
                                             <>
-                                            <li className= 'list-group-item'>
-                                            <p>
+                                            <li key={index} className= 'list-group-item'>
                                                 <td className={colors[index] }></td>
                                                 <td>{professor.name}</td>
-                                            </p>
                                             </li>
                                             </>
                                         ))}
@@ -138,9 +138,9 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
                                     <tr>
                                     <th colSpan={1} scope="col-sm-8">
                                         <div className="row">
-                                        {info.teachingWeek?.map((teachingWeek) => (
+                                        {info.teachingWeek?.map((teachingWeek, index) => (
                                             <>
-                                            <TeachingWeekTable teachingWeek={teachingWeek} ></TeachingWeekTable>
+                                                <TeachingWeekTable teachingWeek={teachingWeek} index={index}></TeachingWeekTable>
                                             </>
                                         ))}
                                         </div>
@@ -161,14 +161,6 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
         
         </>
         ))}
-        {/* button */}
-            <div className="card-footer">
-                <div className="row">
-                    <div className="col">
-                        <center><button className="btn btn-success" name="confirm" onClick={handleConfirmOnClick}>สิ้นสุด</button>&nbsp;</center>         
-                    </div>
-                </div>
-            </div>
         </Card>
     </div>
     </>

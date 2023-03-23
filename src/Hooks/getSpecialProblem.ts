@@ -12,16 +12,16 @@ class LoadsumService {
         return db.doc(teacherId).collection("specialProject");
     }
 
-    create(title : Title, teacherId: string) {
-        return db.doc(teacherId).collection("specialProject").add(title);
+    create(title : Title, teacherId: string, docId: string) {
+        return db.doc(teacherId).collection("specialProject").doc(docId).set(title)
     }
 
     update(id: string, value: any) {
         return db.doc(id).update(value)
     }
 
-    delete(id: string) {
-        return db.doc(id).delete()
+    delete(teacherId: string, docId: string) {
+        return db.doc(teacherId).collection("specialProject").doc(docId).delete()
     }
 }
 
