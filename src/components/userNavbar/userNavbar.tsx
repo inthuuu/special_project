@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-
+import { auth } from '../../fireauth'
 import { 
     DropdownMenu,
     DropdownItem,
@@ -15,6 +15,10 @@ import {
  import './userNav.css'
 
 const userNavbar = () => {
+    const signOut = async () => {
+        await auth.signOut();
+    }
+
     return (
         <>
             <Container>
@@ -31,7 +35,7 @@ const userNavbar = () => {
                                 <h6 className='text-overflow m-0'>menu!</h6>
                             </DropdownItem>
                             <DropdownItem to="/calendar">
-                                
+                                <i className='' />
                                 <span>Calendar</span>
                             </DropdownItem>
                             <DropdownItem to="/calendar">
@@ -39,8 +43,8 @@ const userNavbar = () => {
                                 <span>Teachload History</span>
                             </DropdownItem>
                             <DropdownItem to="/calendar" className='signout'>
-                                <i className='signout' />
-                                <span>Sign Out!</span>
+                                
+                                <span onClick={signOut}>Sign Out!</span>
                             </DropdownItem>
                         </DropdownMenu>
                         </Button>

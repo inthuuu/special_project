@@ -5,6 +5,7 @@ export function Navbar({roleId}: {roleId: any}) {
     return (
         <NavbarBs className="app"> 
             <Container>
+                
                 <Nav className="me-auto">
                     <Nav.Link to="/" as={NavLink}>
                         หน้าแรก
@@ -34,7 +35,7 @@ export function Navbar({roleId}: {roleId: any}) {
                     <Nav.Link to="/calender" as={NavLink}>
                             ปฏิทิน
                     </Nav.Link>
-
+                    
                 </Nav>
             </Container>
         </NavbarBs>

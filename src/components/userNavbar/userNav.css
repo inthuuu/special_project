@@ -1,7 +1,7 @@
 
 .dropbtn {
     background-color: #fff;
-    padding: 6px;
+    opacity: 100%;
     display:grid;
     width: 130px;
     height: 35px;
@@ -14,8 +14,10 @@
     box-shadow: 3px 3px 4px #00000034;
     right: 0px;
     position: absolute;
+
 }
 
 .signout {
     color: #E35205;
+    
 }
