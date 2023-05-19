@@ -20,7 +20,31 @@ const DetailData = ({teacherChecked, index, roleId}: {teacherChecked:any, index:
         console.log("success");
     }    
 
+        const [lists, setLists] = useState();
+    // เปบี่ยนสถานะยืนยัน
+    const handleConfirm = () => {
+        setLists(prevLists => prevLists.map(list => {
+            if (list.id === id) {
+                return {...list, status: 'ตรวจสำเร็จ'};
+            }
+            return list;
+        })
+        );
+    };
 
+    //เปลี่ยนสถานะปฏิเสธ
+    const handleReject = () => {
+        const reason = prompt('เหตุผลการปฏิเสธ');
+        if (reason) {
+            setLists(prevLists => prevLists.map(list => {
+                if (list.id === id) {
+                    return {...list, status: 'ตรวจไม่สำเร็จ', reason};
+                }
+                return reason;
+            }));
+        }
+    };
+    
     let checkStatus;
 
     if(roleId === '2') {
