@@ -56,6 +56,7 @@ const TableDetail = ({teachloads, teachers, roleId} : {teachloads: Array<teachlo
                     <th scope="col"><center>สถานะ</center></th>
                     <th scope="col"><center>ภาระงาน</center></th>
                     <th scope="col"><center>สถานะการยืนยัน</center></th>
+                    <th scope="col"><center>หมายเหตุ</center></th>
                   </tr>
                 </thead>
 

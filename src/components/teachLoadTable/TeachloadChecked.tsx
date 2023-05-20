@@ -1,5 +1,5 @@
 import TeachingWeekTable from "./TeachingWeekTable";
-import CheckboxConfirm from "./checkbox"
+import StatusConfirm from "./Status"
 import PrintBtn from '../PdfPrint/PdfPrint'
 import DownloadButton from "../printButton/downloadButton";
 import { Info } from "../../Props/info";
@@ -80,7 +80,7 @@ const Teachload = ({teachloads, sections, subjects, checked}:  {teachloads: Arra
                 {checked ? <></> :
                     <th>
                     {/*checkbox */}
-                    <CheckboxConfirm></CheckboxConfirm>
+                    <StatusConfirm/>
                     </th>
                 }
                 <th>
